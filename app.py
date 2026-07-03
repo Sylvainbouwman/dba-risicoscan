@@ -452,10 +452,9 @@ def toon_sidebar() -> None:
         st.divider()
 
         if not st.session_state.get("api_key"):
-            try:
-                st.secrets["ANTHROPIC_API_KEY"]
+            if "ANTHROPIC_API_KEY" in st.secrets:
                 st.success("API-sleutel geladen via secrets.")
-            except Exception:
+            else:
                 st.session_state["api_key"] = st.text_input(
                     "Anthropic API-sleutel",
                     type="password",
