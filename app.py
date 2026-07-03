@@ -450,19 +450,6 @@ def toon_sidebar() -> None:
         st.caption(f"Kennisbasis bijgewerkt: {ACTUELE_FEITEN['bijgewerkt']}")
 
         st.divider()
-
-        if not st.session_state.get("api_key"):
-            if "ANTHROPIC_API_KEY" in st.secrets:
-                st.success("API-sleutel geladen via secrets.")
-            else:
-                st.session_state["api_key"] = st.text_input(
-                    "Anthropic API-sleutel",
-                    type="password",
-                    placeholder="sk-ant-...",
-                    help="Voer je Anthropic API-sleutel in of sla hem op in .streamlit/secrets.toml",
-                )
-
-        st.divider()
         st.markdown("**Over deze tool**")
         st.markdown(
             "Beoordeling arbeidsrelatie op basis van de **negen gezichtspunten** "
