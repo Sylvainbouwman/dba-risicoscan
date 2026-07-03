@@ -19,7 +19,7 @@ from export import genereer_memo
 
 st.set_page_config(
     page_title="DBA Risicoscan",
-    page_icon=":scales:",
+    page_icon="⚖️",
     layout="wide",
 )
 
