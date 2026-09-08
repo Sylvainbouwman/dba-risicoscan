@@ -9,6 +9,7 @@ from datetime import date
 from docx import Document
 from docx.shared import Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from analyse_validatie import valideer_analyse
 
 
 SIGNAAL_LABELS = {
@@ -142,6 +143,7 @@ def _voeg_disclaimer_toe(doc: Document) -> None:
 
 def genereer_memo(intake: dict, analyse: dict) -> BytesIO:
     """Genereer een Word-document als BytesIO-object."""
+    valideer_analyse(analyse)
     doc = Document()
     _stel_stijl_in(doc)
     _voeg_koptekst_toe(doc, intake)

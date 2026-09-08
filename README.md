@@ -74,6 +74,25 @@ ANTHROPIC_API_KEY = "sk-ant-..."
 
 ---
 
+## Controle van modelantwoorden
+
+Sinds 8 september 2026 wordt een antwoord pas getoond en naar Word geëxporteerd
+als het volledig is afgerond en de vereiste structuur heeft: precies negen uniek
+genummerde gezichtspunten, geldige signalen en sterktes, onderbouwing en bronvelden,
+samenvatting, lijsten met risicosignalen en verbeterpunten, en een vervolgstap.
+Een nieuwe analysepoging verwijdert het vorige resultaat, zodat een mislukte poging
+geen oud memo als nieuwe uitkomst laat staan. Foutmeldingen verwijzen voor de
+API-configuratie naar de beheerder; ruwe modelantwoorden worden niet getoond.
+
+Deze controle bewijst geen juridische juistheid of geldigheid van een genoemde bron.
+De afzonderlijke inhoudelijke vragen over de kennisbasis blijven dus open.
+
+Synthetische tests, zonder API-aanroepen of sleutels:
+
+```powershell
+& "C:\Python314\python.exe" -m unittest discover -s tests -v
+```
+
 ## Disclaimer
 
 Deze tool biedt een indicatieve risicoanalyse en geen fiscaal of juridisch advies. De beoordeling van de arbeidsrelatie is voorbehouden aan de Belastingdienst en de rechter, op basis van alle feiten en omstandigheden en de feitelijke uitvoering van de opdracht.

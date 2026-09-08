@@ -5,13 +5,13 @@ Beoordeling arbeidsrelatie op basis van de negen gezichtspunten (Deliveroo / Ube
 
 from __future__ import annotations
 
-import json
 import anthropic
 import streamlit as st
 
 from knowledge_base import ACTUELE_FEITEN, BRONNEN
 from prompts import SYSTEM_PROMPT, bouw_analyse_prompt
 from export import genereer_memo
+from analyse_validatie import OngeldigeAnalyse, lees_analyse, valideer_analyse
 
 # ---------------------------------------------------------------------------
 # Configuratie
@@ -333,7 +333,7 @@ def get_client() -> anthropic.Anthropic | None:
 def voer_analyse_uit(intake: dict, antwoorden: dict) -> dict | None:
     client = get_client()
     if client is None:
-        st.error("Voer eerst een geldige Anthropic API-sleutel in (zie zijbalk).")
+        st.error("De analyse is nog niet beschikbaar. Laat de beheerder de API-configuratie controleren.")
         return None
 
     prompt = bouw_analyse_prompt(intake, antwoorden)
@@ -347,26 +347,20 @@ def voer_analyse_uit(intake: dict, antwoorden: dict) -> dict | None:
                 messages=[{"role": "user", "content": prompt}],
             )
         except anthropic.AuthenticationError:
-            st.error("Ongeldige API-sleutel. Controleer de sleutel in de zijbalk.")
+            st.error("De API accepteert de ingestelde sleutel niet. Laat de beheerder de configuratie controleren.")
             return None
-        except Exception as e:
-            st.error(f"API-fout: {e}")
+        except Exception:
+            st.error("De analyse kon niet worden uitgevoerd. Probeer het later opnieuw.")
             return None
-
-    raw = response.content[0].text.strip()
-
-    # Verwijder eventuele markdown code-blokken
-    if raw.startswith("```"):
-        lines = raw.splitlines()
-        raw = "\n".join(
-            line for line in lines if not line.startswith("```")
-        ).strip()
 
     try:
-        return json.loads(raw)
-    except json.JSONDecodeError:
-        st.error("De analyse kon niet worden verwerkt. Probeer het opnieuw.")
-        st.expander("Ruwe API-output (voor diagnose)").code(raw)
+        if response.stop_reason != "end_turn" or not response.content:
+            raise OngeldigeAnalyse("Antwoord niet volledig afgerond.")
+        if any(getattr(blok, "type", None) != "text" for blok in response.content):
+            raise OngeldigeAnalyse("Geen volledig tekstantwoord.")
+        return lees_analyse("".join(blok.text for blok in response.content))
+    except (OngeldigeAnalyse, AttributeError, TypeError):
+        st.error("De dienst gaf geen volledige, geldige analyse. Er is geen resultaat of memo gemaakt. Probeer het opnieuw.")
         return None
 
 
@@ -384,6 +378,11 @@ STERKTE_NL = {"zwak": "zwak", "matig": "matig", "sterk": "sterk"}
 
 
 def toon_resultaten(analyse: dict, intake: dict) -> None:
+    try:
+        valideer_analyse(analyse)
+    except OngeldigeAnalyse:
+        st.error("Dit eerdere resultaat is onvolledig. Start een nieuwe analyse.")
+        return
     st.subheader("Patroon samenvatting")
     st.info(analyse.get("patroon_samenvatting", ""))
 
@@ -579,6 +578,8 @@ def tab_analyse() -> None:
         st.warning("Vul op tabblad 'Opdracht' minimaal opdrachtgever en opdrachtnemer in.")
 
     if st.button("Start analyse", type="primary", disabled=(ingevuld == 0)):
+        st.session_state.pop("analyse_resultaat", None)
+        st.session_state.pop("analyse_intake", None)
         # Bouw leesbare antwoorden-dict op voor de prompt
         antwoorden_prompt: dict[str, str] = {}
         for blok in VRAGENLIJST:
