@@ -10,7 +10,7 @@ import unittest
 
 from analyse_validatie import OngeldigeAnalyse, lees_analyse, valideer_analyse
 from app import kennisbasis_verlopen
-from knowledge_base import ACTUELE_FEITEN, BRONNEN, NEGEN_GEZICHTSPUNTEN
+from knowledge_base import ACTUELE_FEITEN, BRONNEN, NEGEN_GEZICHTSPUNTEN, SZW_TABEL
 from prompts import SYSTEM_PROMPT
 
 
@@ -221,6 +221,168 @@ class HoudbaarheidTest(unittest.TestCase):
         self.assertFalse(kennisbasis_verlopen(date(2026, 12, 31)))
         self.assertTrue(kennisbasis_verlopen(date(2027, 1, 1)))
         self.assertTrue(kennisbasis_verlopen(date(2027, 6, 1)))
+
+
+class GezichtspuntenVolgenHetArrestTest(unittest.TestCase):
+    """Bewaakt de bronverificatie van gezichtspunt 8 en 9 van 11-09-2026.
+
+    Tot die datum heette gezichtspunt 8 "Al dan niet betalen van omzetbelasting". In
+    r.o. 3.2.5 van het Deliveroo-arrest (ECLI:NL:HR:2023:443) is het achtste gezichtspunt
+    "de vraag of degene die de werkzaamheden verricht daarbij commercieel risico loopt";
+    in r.o. 3.1 van het Uber-arrest (ECLI:NL:HR:2025:319) nummert de Hoge Raad die
+    omstandigheid zelf als [viii]. De fiscale behandeling is daar geen zelfstandig
+    gezichtspunt maar een voorbeeld bij het negende. Zie de docstring van
+    knowledge_base.py voor het volledige bewijs.
+    """
+
+    # Per positie een woord dat in r.o. 3.2.5 bij die omstandigheid staat. De namen in de
+    # kennisbasis mogen korter zijn dan het arrest, maar niet van onderwerp verschillen.
+    KERNWOORDEN = ("duur", "werktijden", "inbedding", "persoonlijk", "contractuele",
+                   "beloning", "beloning", "commercieel risico", "economisch verkeer")
+
+    def test_achtste_gezichtspunt_is_het_commercieel_risico(self):
+        achtste = NEGEN_GEZICHTSPUNTEN[7]
+        self.assertEqual(achtste["nummer"], 8)
+        self.assertIn("commercieel risico", achtste["naam"].lower())
+        self.assertIn("commercieel risico", achtste["toelichting"].lower())
+
+    def test_achtste_gezichtspunt_noemt_zijn_vindplaats(self):
+        toelichting = NEGEN_GEZICHTSPUNTEN[7]["toelichting"]
+        self.assertIn("ECLI:NL:HR:2023:443", toelichting)
+        self.assertIn("r.o. 3.2.5", toelichting)
+        # De nummering [viii] is die van de Hoge Raad zelf, in r.o. 3.1 van Uber.
+        self.assertIn("[viii]", toelichting)
+        self.assertIn("ECLI:NL:HR:2025:319", toelichting)
+        # De uitwerking komt uit het beslis- en afwegingskader van de Belastingdienst
+        # (april 2026), waarvan het SZW-toetsingskader een verkorte afgeleide is.
+        self.assertIn("afwegingskader", toelichting.lower())
+
+    def test_afwegingskader_belastingdienst_staat_in_de_bronnen(self):
+        # Primaire uitvoeringsbron, PDF zelf gelezen 11-09-2026 met pypdf. Eerdere
+        # sessies kregen deze PDF niet uitgelezen; de bron stond daarom nog niet in
+        # BRONNEN en ging dus ook niet mee in de systeemprompt.
+        bron = BRONNEN["afwegingskader_belastingdienst"]
+        self.assertIn("afwegingskader", bron["url"])
+        self.assertIn("commercieel risico", bron["inhoud"].lower())
+        self.assertIn(bron["naam"], SYSTEM_PROMPT)
+
+    def test_achtste_gezichtspunt_noemt_de_risicoverdeling(self):
+        # De elementen uit het Toetsingskader Beoordeling arbeidsrelaties (SZW, juli
+        # 2026, gezichtspunt 8): schade aan derden, ziekte, ongeval, investeringen en de
+        # verantwoordelijkheid voor de kwaliteit van het resultaat.
+        toelichting = NEGEN_GEZICHTSPUNTEN[7]["toelichting"].lower()
+        for element in ("schade aan derden", "ziekte", "ongeval", "investeringen",
+                        "kwaliteit van het resultaat", "eigen tijd en voor eigen rekening"):
+            with self.subTest(element=element):
+                self.assertIn(element, toelichting)
+
+    def test_omzetbelasting_is_geen_zelfstandig_gezichtspunt(self):
+        for g in NEGEN_GEZICHTSPUNTEN:
+            with self.subTest(gezichtspunt=g["nummer"]):
+                self.assertNotIn("omzetbelasting", g["naam"].lower())
+        self.assertNotIn("8. **Al dan niet betalen van omzetbelasting**", SYSTEM_PROMPT)
+
+    def test_fiscale_behandeling_hoort_bij_het_negende(self):
+        negende = NEGEN_GEZICHTSPUNTEN[8]
+        self.assertEqual(negende["nummer"], 9)
+        toelichting = negende["toelichting"]
+        self.assertIn("fiscale behandeling", toelichting.lower())
+        for element in ("btw", "kvk", "inkomstenbelasting"):
+            with self.subTest(element=element):
+                self.assertIn(element, toelichting.lower())
+        # Het commercieel risico stond hier eerder ("dragen van financieel risico");
+        # het hoort bij het achtste gezichtspunt en wordt hier niet nog eens geweten.
+        self.assertIn("achtste gezichtspunt", toelichting.lower())
+
+    def test_alle_negen_namen_volgen_de_rechtsoverweging(self):
+        self.assertEqual(len(NEGEN_GEZICHTSPUNTEN), 9)
+        self.assertEqual([g["nummer"] for g in NEGEN_GEZICHTSPUNTEN], list(range(1, 10)))
+        for g, kernwoord in zip(NEGEN_GEZICHTSPUNTEN, self.KERNWOORDEN):
+            with self.subTest(gezichtspunt=g["nummer"]):
+                self.assertIn(kernwoord, g["naam"].lower())
+
+    def test_systeemprompt_noemt_het_commercieel_risico(self):
+        # Het gezichtspunt ontbrak geheel in de systeemprompt; dat is de kern van het
+        # gebrek dat hier wordt bewaakt.
+        self.assertIn("commercieel risico", SYSTEM_PROMPT.lower())
+
+    def test_szw_tabel_dekt_de_elementen_van_gezichtspunt_8(self):
+        zzp = " ".join(SZW_TABEL["zzp_kenmerken"]).lower()
+        loon = " ".join(SZW_TABEL["loondienst_kenmerken"]).lower()
+        for element in ("commercieel risico", "schade aan derden", "ziekte",
+                        "eigen tijd en voor eigen rekening"):
+            with self.subTest(element=element):
+                self.assertIn(element, zzp)
+        for element in ("schade aan derden", "ziekte", "ongeval"):
+            with self.subTest(element=element, lijst="loondienst"):
+                self.assertIn(element, loon)
+        # De lijsten zijn per index gepaard; ongelijke lengte zet de paren uit elkaar.
+        self.assertEqual(len(SZW_TABEL["zzp_kenmerken"]),
+                         len(SZW_TABEL["loondienst_kenmerken"]))
+
+
+class VragenlijstVolgtDeGezichtspuntenTest(unittest.TestCase):
+    """De vragenlijst moet dezelfde negen gezichtspunten bevragen als de kennisbasis."""
+
+    @staticmethod
+    def vragenlijst():
+        tree = ast.parse(Path('app.py').read_text(encoding='utf-8'))
+        node = next(n for n in tree.body if isinstance(n, ast.Assign)
+                    and getattr(n.targets[0], 'id', '') == 'VRAGENLIJST')
+        return ast.literal_eval(node.value)
+
+    def test_blokken_volgen_de_kennisbasis(self):
+        blokken = self.vragenlijst()
+        self.assertEqual([b["gezichtspunt"] for b in blokken], list(range(1, 10)))
+        self.assertIn("commercieel risico", blokken[7]["naam"].lower())
+        self.assertNotIn("omzetbelasting", blokken[7]["naam"].lower())
+
+    def test_gezichtspunt_8_vraagt_naar_de_risicoverdeling(self):
+        blok = self.vragenlijst()[7]
+        tekst = " ".join(v["vraag"] + " " + " ".join(v["opties"]) for v in blok["vragen"]).lower()
+        for element in ("eigen tijd en voor eigen rekening", "schade aan derden",
+                        "ziekte", "ongeval", "geïnvesteerd"):
+            with self.subTest(element=element):
+                self.assertIn(element, tekst)
+        # De fiscale vragen horen hier niet meer.
+        for element in ("btw", "kvk", "inkomstenbelasting"):
+            with self.subTest(element=element):
+                self.assertNotIn(element, tekst)
+
+    def test_fiscale_vragen_staan_bij_gezichtspunt_9(self):
+        blok = self.vragenlijst()[8]
+        ids = [v["id"] for v in blok["vragen"]]
+        for vraag_id in ("q9_btw", "q9_kvk", "q9_ib"):
+            with self.subTest(vraag_id=vraag_id):
+                self.assertIn(vraag_id, ids)
+
+    def test_vraag_ids_zijn_uniek_en_horen_bij_hun_blok(self):
+        blokken = self.vragenlijst()
+        alle = [v["id"] for b in blokken for v in b["vragen"]]
+        self.assertEqual(len(alle), len(set(alle)))
+        for b in blokken:
+            for v in b["vragen"]:
+                with self.subTest(vraag_id=v["id"]):
+                    self.assertTrue(v["id"].startswith(f"q{b['gezichtspunt']}_"))
+
+    def test_documentatie_noemt_het_gemeten_aantal_vragen(self):
+        aantal = sum(len(b["vragen"]) for b in self.vragenlijst())
+        self.assertEqual(aantal, 27)
+        for bestand in ('README.md', 'UC_dba-risicoscan.md'):
+            tekst = Path(bestand).read_text(encoding='utf-8')
+            with self.subTest(bestand=bestand):
+                self.assertIn(f"{aantal} vragen", tekst)
+                self.assertNotIn("25 vragen", tekst)
+
+    def test_readme_noemt_het_achtste_gezichtspunt_juist(self):
+        readme = Path('README.md').read_text(encoding='utf-8')
+        regels = [r.strip() for r in readme.splitlines()]
+        achtste = next(r for r in regels if r.startswith('8. '))
+        negende = next(r for r in regels if r.startswith('9. '))
+        self.assertIn("commercieel risico", achtste.lower())
+        self.assertNotIn("omzetbelasting", achtste.lower())
+        self.assertIn("economisch verkeer", negende.lower())
+        self.assertIn("r.o. 3.2.5", readme)
 
 
 if __name__ == '__main__':

@@ -49,3 +49,29 @@ Wat de tests niet afdekken: zij bewijzen dat de juiste tekst in de prompt staat,
 - **Het uitgebreide beslis- en afwegingskader van de Belastingdienst is nog niet zelf gelezen.** Alleen de verkorte SZW-versie is nagekeken.
 - **Het toetsingskader van SZW wordt volgens de vakpers aangepast** omdat formuleringen afwijken van de arresten. Daaruit is daarom alleen de weging overgenomen, en die is onafhankelijk getoetst aan het Uber-arrest.
 - Het register vermeldt nog geen `laatst_beoordeeld` en de status staat op beta. Dat bijwerken hoort in `bouwman-tools` en is hier niet gedaan.
+
+## Naschrift 11-09-2026 12:05 CEST — twee openstaande punten gesloten
+
+Later dezelfde dag zijn twee van de openstaande punten hierboven weggewerkt. Zij staan in
+een eigen wijziging, omdat het achtste gezichtspunt het model raakt en Sylvain daar eerst
+toestemming voor moest geven.
+
+**Het achtste gezichtspunt is hersteld naar het commercieel risico.** De naam, de
+toelichting en de vier vragen erbij volgen nu r.o. 3.2.5 van het Deliveroo-arrest
+(ECLI:NL:HR:2023:443), met in r.o. 3.1 van het Uber-arrest (ECLI:NL:HR:2025:319) de
+nummering van de Hoge Raad zelf: [viii] is het commercieel risico, [ix] het
+ondernemersgedrag. De btw-, KVK- en IB-vragen zijn niet geschrapt maar verplaatst naar
+gezichtspunt 9, waar de fiscale behandeling volgens die overweging thuishoort. De
+vragenlijst telt daardoor 27 vragen in plaats van 25.
+
+**Het uitgebreide beslis- en afwegingskader van de Belastingdienst is nu wel zelf gelezen**
+(uitgave april 2026, formulier LH 630-1Z*2PL, acht pagina's, met `pypdf` uitgelezen na
+`curl` naar een map buiten de sessiemap). Gezichtspunt 8 staat er woordelijk in en het
+kader staat nu als vindplaats in `BRONNEN`. Wat er niet in staat: geen termijn bij
+gezichtspunt 1 en geen factor ten opzichte van het cao-loon bij gezichtspunt 7. Daarmee is
+het spoor van de twee eerder verwijderde vuistregels afgelopen. De kenmerkentabel die in de
+code `SZW_TABEL` heet staat er evenmin in, en ook niet in het SZW-kader van juli 2026; de
+herkomst van die tabel blijft dus een openstaand punt en de naam suggereert meer dan er is.
+
+De testsuite staat na die wijziging op 36 tests, alle groen, waarvan vijftien nieuw.
+Nagemeten op de commit van vóór die ronde: veertien van de vijftien falen daar.

@@ -239,39 +239,66 @@ VRAGENLIJST = [
             },
         ],
     },
+    # Gezichtspunt 8 is het commercieel risico, niet de omzetbelasting. De vier vragen
+    # volgen de elementen uit r.o. 3.2.5 van het Deliveroo-arrest, uitgewerkt in het
+    # Toetsingskader Beoordeling arbeidsrelaties (SZW, juli 2026, gezichtspunt 8): de
+    # verdeling van de risico's bij schade aan derden, bij ziekte en ongeval en bij
+    # investeringen, en de verantwoordelijkheid voor de kwaliteit van het resultaat.
+    # Zie de docstring van knowledge_base.py voor de bronverificatie.
     {
         "gezichtspunt": 8,
-        "naam": "Omzetbelasting en ondernemersstatus",
+        "naam": "Commercieel risico",
         "vragen": [
             {
-                "id": "q8_btw",
-                "vraag": "Brengt de opdrachtnemer BTW in rekening?",
+                "id": "q8_risico_resultaat",
+                "vraag": (
+                    "Wie draagt het risico als het resultaat ondermaats is? Moet de opdrachtnemer "
+                    "herstellen in eigen tijd en voor eigen rekening?"
+                ),
                 "opties": [
-                    "Ja, altijd",
-                    "Nee, BTW-vrijgesteld (bijv. zorg, onderwijs)",
-                    "Nee, geen BTW op facturen",
+                    "Opdrachtnemer herstelt in eigen tijd en voor eigen rekening",
+                    "Herstel in eigen tijd, maar de uren worden wel doorbetaald",
+                    "Opdrachtgever draagt het risico; herstel wordt gewoon vergoed",
+                    "Niet afgesproken / nog niet voorgekomen",
                 ],
             },
             {
-                "id": "q8_kvk",
-                "vraag": "Staat de opdrachtnemer actief ingeschreven bij de KVK?",
+                "id": "q8_risico_schade",
+                "vraag": "Wie draagt het risico bij schade aan derden of aan eigendom van de opdrachtgever?",
                 "opties": [
-                    "Ja, actieve inschrijving als zelfstandige/ondernemer",
-                    "Ja, maar inschrijving is inactief of recent",
-                    "Nee",
+                    "Opdrachtnemer, met eigen beroeps- of bedrijfsaansprakelijkheidsverzekering",
+                    "Opdrachtnemer, maar aansprakelijkheid is contractueel beperkt of gemaximeerd",
+                    "Opdrachtgever, of de opdrachtnemer valt onder diens verzekering",
+                    "Niet afgesproken / onbekend",
                 ],
             },
             {
-                "id": "q8_ib",
-                "vraag": "Doet de opdrachtnemer aangifte inkomstenbelasting als ondernemer (winst uit onderneming)?",
+                "id": "q8_risico_ziekte",
+                "vraag": "Wat gebeurt er met de vergoeding bij ziekte, ongeval of uitval van de opdrachtnemer?",
                 "opties": [
-                    "Ja, inclusief zelfstandigenaftrek",
-                    "Ja, als resultaat overige werkzaamheden (ROW)",
-                    "Nee / onbekend",
+                    "Geen vergoeding; opdrachtnemer draagt het risico zelf (eigen AOV of reserves)",
+                    "Deels doorbetaald, of opdrachtgever regelt vervanging op eigen kosten",
+                    "Vergoeding loopt door, vergelijkbaar met doorbetaling bij ziekte",
+                    "Niet afgesproken / onbekend",
+                ],
+            },
+            {
+                "id": "q8_investering",
+                "vraag": (
+                    "Heeft de opdrachtnemer voor eigen rekening geïnvesteerd in bedrijfsmiddelen of "
+                    "gereedschap die hij bij deze opdracht gebruikt?"
+                ),
+                "opties": [
+                    "Ja, substantiële eigen investering met eigen risico op waardeverlies",
+                    "Beperkt (bijv. laptop of klein gereedschap)",
+                    "Nee, werkt uitsluitend met middelen van de opdrachtgever",
                 ],
             },
         ],
     },
+    # Gezichtspunt 9 omvat de fiscale behandeling: r.o. 3.2.5 noemt die uitdrukkelijk als
+    # voorbeeld bij het ondernemersgedrag ("wat betreft fiscale behandeling"). De btw-,
+    # KVK- en IB-vragen stonden tot 11-09-2026 bij gezichtspunt 8 en horen hier.
     {
         "gezichtspunt": 9,
         "naam": "Ondernemersgedrag in het economisch verkeer",
@@ -295,21 +322,30 @@ VRAGENLIJST = [
                 ],
             },
             {
-                "id": "q9_risico",
-                "vraag": "Draagt de opdrachtnemer financieel risico bij fouten of tegenvallend resultaat?",
+                "id": "q9_btw",
+                "vraag": "Brengt de opdrachtnemer BTW in rekening?",
                 "opties": [
-                    "Ja, volledig aansprakelijk (incl. beroepsaansprakelijkheidsverzekering)",
-                    "Deels",
-                    "Nee, risico ligt bij opdrachtgever",
+                    "Ja, altijd",
+                    "Nee, BTW-vrijgesteld (bijv. zorg, onderwijs)",
+                    "Nee, geen BTW op facturen",
                 ],
             },
             {
-                "id": "q9_investering",
-                "vraag": "Heeft de opdrachtnemer geïnvesteerd in eigen bedrijfsmiddelen of gereedschap?",
+                "id": "q9_kvk",
+                "vraag": "Staat de opdrachtnemer actief ingeschreven bij de KVK?",
                 "opties": [
-                    "Ja, substantiële eigen investering",
-                    "Beperkt (bijv. laptop)",
-                    "Nee, werkt uitsluitend met middelen van opdrachtgever",
+                    "Ja, actieve inschrijving als zelfstandige/ondernemer",
+                    "Ja, maar inschrijving is inactief of recent",
+                    "Nee",
+                ],
+            },
+            {
+                "id": "q9_ib",
+                "vraag": "Doet de opdrachtnemer aangifte inkomstenbelasting als ondernemer (winst uit onderneming)?",
+                "opties": [
+                    "Ja, inclusief zelfstandigenaftrek",
+                    "Ja, als resultaat overige werkzaamheden (ROW)",
+                    "Nee / onbekend",
                 ],
             },
         ],

@@ -18,7 +18,7 @@ De tool geeft **geen eindoordeel** ("wel of geen dienstbetrekking") — dat is v
 
 **Stap 1 — Opdracht:** vul de basisgegevens in van de concrete opdracht (opdrachtgever, opdrachtnemer, sector, werkzaamheden).
 
-**Stap 2 — Vragenlijst:** beantwoord 25 vragen verdeeld over de negen gezichtspunten, gebaseerd op de feitelijke situatie.
+**Stap 2 — Vragenlijst:** beantwoord 27 vragen verdeeld over de negen gezichtspunten, gebaseerd op de feitelijke situatie.
 
 **Stap 3 — Analyse & Resultaat:** de tool analyseert elk gezichtspunt met onderbouwing en bronverwijzing, toont sterke risicosignalen en concrete verbeterpunten, en genereert een downloadbaar Word-risicomemo.
 
@@ -26,7 +26,7 @@ De tool geeft **geen eindoordeel** ("wel of geen dienstbetrekking") — dat is v
 
 ## Juridisch kader
 
-De negen gezichtspunten uit het Deliveroo-arrest (ECLI:NL:HR:2023:443), bevestigd in het Uber-arrest (ECLI:NL:HR:2025:319):
+De negen gezichtspunten uit r.o. 3.2.5 van het Deliveroo-arrest (ECLI:NL:HR:2023:443). De nummering is die van de Hoge Raad zelf: in r.o. 3.1 van het Uber-arrest (ECLI:NL:HR:2025:319) citeert hij die overweging en voegt daaraan de nummering [i] tot [ix] toe.
 
 1. Aard en duur van de werkzaamheden
 2. Wijze waarop werkzaamheden en werktijden worden bepaald
@@ -35,10 +35,12 @@ De negen gezichtspunten uit het Deliveroo-arrest (ECLI:NL:HR:2023:443), bevestig
 5. Wijze waarop de contractuele regeling tot stand is gekomen
 6. Wijze waarop de beloning wordt bepaald en uitbetaald
 7. Hoogte van de beloning
-8. Al dan niet betalen van omzetbelasting
-9. Gedrag als ondernemer in het economisch verkeer
+8. De vraag of degene die de werkzaamheden verricht daarbij commercieel risico loopt
+9. Gedrag als ondernemer in het economisch verkeer (waaronder de fiscale behandeling)
 
 Tussen deze gezichtspunten geldt geen rangorde; zij worden holistisch gewogen.
+
+Tot 11 september 2026 stond bij 8 "Al dan niet betalen van omzetbelasting". Dat is niet het achtste gezichtspunt van de Hoge Raad: de fiscale behandeling is in r.o. 3.2.5 een van de voorbeelden bij het negende gezichtspunt. Het commercieel risico is toegevoegd, met vier vragen over de verdeling van risico's bij schade, ziekte, ongeval en investeringen, en de btw-, KVK- en IB-vragen staan nu bij gezichtspunt 9. Daardoor telt de vragenlijst 27 vragen in plaats van 25.
 
 **Actuele stand van zaken (11 september 2026):**
 - Normale handhaving hervat per 1 januari 2025. Voor 2026 geldt een gedeeltelijk verlengde zachte landing: geen verzuimboetes, wel vergrijpboetes bij opzet of grove schuld, en in beginsel eerst een bedrijfsbezoek. Per 1 januari 2027 vervallen die elementen ([Kamerbrief 19 december 2025](https://www.rijksoverheid.nl/documenten/kamerstukken/2025/12/19/gedeeltelijke-verlenging-zachte-landing-handhaving-schijnzelfstandigheid))

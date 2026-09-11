@@ -7,6 +7,7 @@
 | **Status** | Live |
 | **Versie** | v1 — juni 2026 |
 | **Beschrijving gelijkgetrokken met het gedrag** | 11-09-2026 |
+| **Gezichtspunt 8 hersteld naar het commercieel risico** | 11-09-2026 |
 
 ## Doel
 
@@ -30,7 +31,7 @@ DBA-beoordeling wordt ad-hoc uitgevoerd, sterk afhankelijk van individuele kenni
 
 ## To-be situatie
 
-1. Medewerker vult de opdrachtgegevens in en beantwoordt 25 vragen, verdeeld over de negen
+1. Medewerker vult de opdrachtgegevens in en beantwoordt 27 vragen, verdeeld over de negen
    gezichtspunten uit de arresten
 2. Per gezichtspunt toont de tool welke kant het signaal wijst (wijst op loondienst / neutraal /
    wijst op ZZP-schap) met een sterkte erbij (zwak / matig / sterk), plus de onderbouwing op de
