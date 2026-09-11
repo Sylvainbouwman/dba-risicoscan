@@ -1,7 +1,35 @@
 """
 Juridische kennisbasis voor de DBA Risicoscan.
-Bronnen: Deliveroo-arrest (HR 24 maart 2023), Uber-arrest (HR 21 februari 2025),
-Belastingdienst, SZW-tabel, Rijksoverheid.
+Bronnen: Deliveroo-arrest (HR 24 maart 2023, ECLI:NL:HR:2023:443), Uber-arrest
+(HR 21 februari 2025, ECLI:NL:HR:2025:319), Belastingdienst, SZW-tabel, Rijksoverheid.
+
+Bronverificatie 11-09-2026 (2026-09-11 07:05 UTC). De toelichtingen bevatten geen
+kwantitatieve drempel meer. Tot die datum stond bij gezichtspunt 1 een termijn
+(langer dan een jaar, zeker langer dan twee jaar zonder einddatum) en bij
+gezichtspunt 7 een factor (minimaal 1,5x het brutoloon). Beide gingen via
+NEGEN_GEZICHTSPUNTEN letterlijk de systeemprompt in en wogen dus mee in het signaal
+dat de gebruiker te zien krijgt. Ze zijn verwijderd omdat zij geen vindplaats hebben.
+Nagezocht en niet aangetroffen in:
+
+- de volledige tekst van ECLI:NL:HR:2023:443 en ECLI:NL:HR:2025:319, opgehaald via
+  data.rechtspraak.nl; de gezichtspunten staan in r.o. 3.2.5 van het Deliveroo-arrest
+  en bevatten geen termijn en geen factor;
+- de wetsgeschiedenis van het rechtsvermoeden op uurtarief: Stb. 2026, 158 voert
+  art. 7:610aa BW in met een bedrag van ten hoogste EUR 36 per uur, dus een absoluut
+  bedrag en geen factor ten opzichte van het cao-loon, en die wet is nog niet in
+  werking (inwerkingtreding bij koninklijk besluit);
+- de kennisgroepstandpunten loonheffingen op kennisgroepen.belastingdienst.nl;
+- de voorlichting van Rijksoverheid en Belastingdienst over schijnzelfstandigheid.
+  Die zegt over het tarief juist het omgekeerde: ook bij een hoog uurtarief kan
+  sprake zijn van schijnzelfstandigheid, want het tarief is maar een van de criteria.
+
+Factoren komen alleen voor in vakliteratuur en op commerciële sites, en dan onderling
+tegenstrijdig (1,5x, 2x, 2,5x, of 50 tot 100 procent hoger dan het brutoloon). Dat is
+geen grondslag waarop deze tool een risicosignaal mag baseren.
+
+Niet gelukte controle: de PDF "Toelichting Beoordeling arbeidsrelaties, beslis- en
+afwegingskader" (Belastingdienst, formulier LH 630-1Z*2PL) bleek niet machinaal te
+lezen. Die bron is dus niet zelf nagekeken; zie OPENSTAANDE-VRAGEN.md.
 """
 
 NEGEN_GEZICHTSPUNTEN = [
@@ -11,7 +39,12 @@ NEGEN_GEZICHTSPUNTEN = [
         "toelichting": (
             "Projectmatig werk met een duidelijk eindresultaat wijst op ZZP-schap. "
             "Structurele, doorlopende taken die ook door vaste medewerkers worden uitgevoerd wijzen op loondienst. "
-            "Langdurige opdrachten (> 1 jaar, zeker > 2 jaar zonder einddatum) verhogen het risico aanzienlijk."
+            "Aard en duur is het eerste gezichtspunt uit het Deliveroo-arrest "
+            "(HR 24 maart 2023, ECLI:NL:HR:2023:443, r.o. 3.2.5). Een langdurige of doorlopende inzet "
+            "zonder einddatum weegt mee, maar noem geen termijn als grens: de arresten en de voorlichting "
+            "van Belastingdienst en Rijksoverheid noemen geen aantal maanden of jaren waarboven een "
+            "opdracht als dienstbetrekking geldt. Weeg de duur daarom altijd in samenhang met de "
+            "andere gezichtspunten."
         ),
     },
     {
@@ -64,8 +97,13 @@ NEGEN_GEZICHTSPUNTEN = [
         "naam": "Hoogte van de beloning",
         "toelichting": (
             "Een uurtarief dat duidelijk hoger ligt dan het vergelijkbare cao-uurloon inclusief werkgeverslasten "
-            "(vuistregel: minimaal 1,5x het brutoloon, inclusief vakantiegeld, pensioen en werkgeverslasten) "
-            "wijst op ZZP-schap. Een tarief vergelijkbaar met of lager dan cao-loon is een sterk risicosignaal."
+            "(vakantiegeld, pensioen en sociale lasten) wijst op ZZP-schap. Een tarief vergelijkbaar met of "
+            "lager dan dat cao-loon is een sterk risicosignaal. De hoogte van de beloning is het zevende "
+            "gezichtspunt uit het Deliveroo-arrest (HR 24 maart 2023, ECLI:NL:HR:2023:443, r.o. 3.2.5). "
+            "Er bestaat geen wettelijke of jurisprudentiële factor ten opzichte van het cao-loon; gebruik "
+            "dus geen vuistregel met een vermenigvuldigingsfactor. Ook bij een hoog tarief kan sprake zijn "
+            "van schijnzelfstandigheid, want het tarief is maar een van de criteria (Rijksoverheid, "
+            "Veelgestelde vragen over schijnzelfstandigheid)."
         ),
     },
     {
@@ -126,9 +164,11 @@ BRONNEN = {
     "uber": {
         "naam": "Hoge Raad: Uber-arrest (prejudiciële beslissing)",
         "datum": "21 februari 2025",
-        "ecli": "ECLI:NL:HR:2025:329",
-        "url": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2025:329",
-        "inhoud": "Bevestiging en verdere uitwerking Deliveroo-criteria; zwaar gewicht aan inbedding organisatie",
+        # ECLI gecontroleerd 11-09-2026 op data.rechtspraak.nl: zaaknummer 24/00877.
+        # ECLI:NL:HR:2025:329 stond hier eerder en is een strafzaak, niet het Uber-arrest.
+        "ecli": "ECLI:NL:HR:2025:319",
+        "url": "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:HR:2025:319",
+        "inhoud": "Prejudiciële beslissing over het gezichtspunt ondernemerschap; tussen de gezichtspunten geldt geen rangorde (r.o. 3.3) en ook extern ondernemerschap weegt volledig mee",
     },
     "belastingdienst_ar": {
         "naam": "Belastingdienst: Arbeidsrelaties zzp – ja of nee",
@@ -144,6 +184,12 @@ BRONNEN = {
         "naam": "Belastingdienst: Modelovereenkomsten",
         "url": "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/ondernemen/modelovereenkomsten-in-plaats-van-var/arbeidsrelaties",
         "inhoud": "Geen nieuwe beoordelingen meer since 6 sept 2024; bestaande geldig t/m 31 dec 2029",
+    },
+    "rijksoverheid_schijnzelfstandigheid": {
+        "naam": "Rijksoverheid: Veelgestelde vragen over schijnzelfstandigheid",
+        "url": "https://www.rijksoverheid.nl/themas/werk/zelfstandigen-zonder-personeel-zzp/veelgestelde-vragen-schijnzelfstandigheid",
+        # Geraadpleegd 11-09-2026. Noemt geen termijn en geen tariefdrempel.
+        "inhoud": "Ook bij een hoog uurtarief kan sprake zijn van schijnzelfstandigheid; het tarief is maar een van de criteria",
     },
     "webmodule": {
         "naam": "Webmodule Beoordeling Arbeidsrelatie",

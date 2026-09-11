@@ -227,7 +227,7 @@ VRAGENLIJST = [
         "vragen": [
             {
                 "id": "q7_tarief_niveau",
-                "vraag": "Is het uurtarief duidelijk hoger dan het vergelijkbare cao-uurloon inclusief werkgeverslasten (vuistregel: minimaal 1,5x brutoloon)?",
+                "vraag": "Is het uurtarief duidelijk hoger dan het vergelijkbare cao-uurloon inclusief werkgeverslasten (vakantiegeld, pensioen en sociale lasten)?",
                 "opties": [
                     "Ja, duidelijk hoger (marktconform ZZP-tarief)",
                     "Ongeveer gelijk aan cao-loon inclusief werkgeverslasten",

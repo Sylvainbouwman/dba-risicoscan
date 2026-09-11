@@ -8,6 +8,8 @@ from types import SimpleNamespace
 import unittest
 
 from analyse_validatie import OngeldigeAnalyse, lees_analyse, valideer_analyse
+from knowledge_base import BRONNEN, NEGEN_GEZICHTSPUNTEN
+from prompts import SYSTEM_PROMPT
 
 
 def volledig():
@@ -94,6 +96,55 @@ class ValidatieTest(unittest.TestCase):
         exec(compile(ast.Module(body=[fn], type_ignores=[]), 'app.py', 'exec'), env)
         env['toon_resultaten']({}, {})
         self.assertEqual(len(fouten), 1)
+
+
+class KennisbasisTest(unittest.TestCase):
+    """Bewaakt het bronherstel van 11-09-2026; zie de docstring van knowledge_base.py."""
+
+    def test_systeemprompt_zonder_kwantitatieve_drempel(self):
+        # Deze drempels stonden tot 11-09-2026 in de kennisbasis en hebben geen
+        # vindplaats in Deliveroo, Uber, de wetsgeschiedenis, de kennisgroep-
+        # standpunten of de voorlichting van Belastingdienst en Rijksoverheid.
+        verboden = ["1,5", "1.5", "anderhalf", "> 1 jaar", "> 2 jaar",
+                    "meer dan 1 jaar", "meer dan 2 jaar", "langer dan een jaar",
+                    "langer dan twee jaar", "zonder einddatum) verhogen"]
+        for tekst in verboden:
+            with self.subTest(tekst=tekst):
+                self.assertNotIn(tekst.lower(), SYSTEM_PROMPT.lower())
+
+    def test_duur_en_tarief_noemen_hun_vindplaats(self):
+        for nummer in (1, 7):
+            toelichting = NEGEN_GEZICHTSPUNTEN[nummer - 1]["toelichting"]
+            with self.subTest(gezichtspunt=nummer):
+                self.assertIn("ECLI:NL:HR:2023:443", toelichting)
+                self.assertIn("r.o. 3.2.5", toelichting)
+        self.assertIn("Rijksoverheid", NEGEN_GEZICHTSPUNTEN[6]["toelichting"])
+
+    def test_uber_arrest_heeft_de_juiste_ecli(self):
+        # ECLI:NL:HR:2025:329 stond hier eerder en is een strafzaak.
+        self.assertEqual(BRONNEN["uber"]["ecli"], "ECLI:NL:HR:2025:319")
+        self.assertIn("ECLI:NL:HR:2025:319", BRONNEN["uber"]["url"])
+        self.assertNotIn("2025:329", SYSTEM_PROMPT)
+
+    def test_vragenlijst_stuurt_niet_met_een_factor(self):
+        vragenlijst = Path('app.py').read_text(encoding='utf-8')
+        for tekst in ("1,5x", "1,5 x", "vuistregel: minimaal"):
+            with self.subTest(tekst=tekst):
+                self.assertNotIn(tekst, vragenlijst)
+
+
+class GebruiksscenarioTest(unittest.TestCase):
+    """Het gebruiksscenario mag geen uitkomst beloven die de tool niet geeft."""
+
+    def test_geen_risicoklasse_belooft(self):
+        uc = Path('UC_dba-risicoscan.md').read_text(encoding='utf-8').lower()
+        for tekst in ("laag / midden / hoog", "risicooordeel", "risico-oordeel (laag"):
+            with self.subTest(tekst=tekst):
+                self.assertNotIn(tekst, uc)
+        self.assertIn("geen eindoordeel", uc)
+
+    def test_systeemprompt_verbiedt_een_eindoordeel(self):
+        self.assertIn("Geef GEEN eindoordeel", SYSTEM_PROMPT)
 
 
 if __name__ == '__main__':

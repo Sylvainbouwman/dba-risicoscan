@@ -6,6 +6,7 @@
 | **Domein** | Fiscaal / Arbeidsrecht / Compliance |
 | **Status** | Live |
 | **Versie** | v1 — juni 2026 |
+| **Beschrijving gelijkgetrokken met het gedrag** | 11-09-2026 |
 
 ## Doel
 
@@ -29,10 +30,20 @@ DBA-beoordeling wordt ad-hoc uitgevoerd, sterk afhankelijk van individuele kenni
 
 ## To-be situatie
 
-1. Medewerker opent de tool en doorloopt de negen gezichtspunten uit de arresten
-2. Per gezichtspunt wordt de situatie van de klant beoordeeld (dienstbetrekking / zelfstandige / neutraal)
-3. Tool genereert een indicatief risicooordeel (laag / midden / hoog)
-4. Uitkomst dient als gespreksondersteuning en eerste screening — geen juridisch bindend oordeel
+1. Medewerker vult de opdrachtgegevens in en beantwoordt 25 vragen, verdeeld over de negen
+   gezichtspunten uit de arresten
+2. Per gezichtspunt toont de tool welke kant het signaal wijst (wijst op loondienst / neutraal /
+   wijst op ZZP-schap) met een sterkte erbij (zwak / matig / sterk), plus de onderbouwing op de
+   ingevulde feiten en een bronverwijzing
+3. Daarnaast volgt een samenvatting van het patroon over de negen gezichtspunten samen, een lijst
+   met de sterke risicosignalen, verbeterpunten per gezichtspunt en een aanbevolen vervolgstap
+4. De uitkomst is te downloaden als Word-risicomemo
+5. Uitkomst dient als gespreksondersteuning en eerste screening — geen juridisch bindend oordeel
+
+**Wat de tool niet doet.** Er komt geen eindoordeel "wel of geen dienstbetrekking" en ook geen
+risicoklasse in drie niveaus. Dat is een bewuste keuze: de kwalificatie is voorbehouden aan de
+Belastingdienst en de rechter, en tussen de negen gezichtspunten geldt geen rangorde, zodat er
+niets valt op te tellen tot een score. De systeemprompt verbiedt een eindoordeel uitdrukkelijk.
 
 ## Live
 
