@@ -26,7 +26,7 @@ De tool geeft **geen eindoordeel** ("wel of geen dienstbetrekking") — dat is v
 
 ## Juridisch kader
 
-De negen gezichtspunten uit het Deliveroo-arrest (ECLI:NL:HR:2023:443), bevestigd in het Uber-arrest (ECLI:NL:HR:2025:329):
+De negen gezichtspunten uit het Deliveroo-arrest (ECLI:NL:HR:2023:443), bevestigd in het Uber-arrest (ECLI:NL:HR:2025:319):
 
 1. Aard en duur van de werkzaamheden
 2. Wijze waarop werkzaamheden en werktijden worden bepaald
