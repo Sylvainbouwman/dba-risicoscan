@@ -27,11 +27,15 @@ Factoren komen alleen voor in vakliteratuur en op commerciële sites, en dan ond
 tegenstrijdig (1,5x, 2x, 2,5x, of 50 tot 100 procent hoger dan het brutoloon). Dat is
 geen grondslag waarop deze tool een risicosignaal mag baseren.
 
-Niet gelukte controle: de PDF "Toelichting Beoordeling arbeidsrelaties, beslis- en
-afwegingskader" (Belastingdienst, formulier LH 630-1Z*2PL) bleek niet machinaal te
-lezen. Die bron is dus niet zelf nagekeken; zie OPENSTAANDE-VRAGEN.md. Wel is de
-verkorte afgeleide ervan gelezen: het Toetsingskader Beoordeling arbeidsrelaties van
-SZW, uitgave juli 2026, opgehaald van open.overheid.nl en uitgelezen met pypdf.
+Eerder niet gelukte controle nu wel gelukt (11-09-2026): de PDF "Toelichting Beoordeling
+arbeidsrelaties, beslis- en afwegingskader" (Belastingdienst, formulier LH 630-1Z*2PL,
+uitgave april 2026) is met curl opgehaald en met pypdf uitgelezen, acht pagina's. Dat is
+de primaire uitvoeringsbron waarvan het SZW-toetsingskader van juli 2026 een verkorte
+afgeleide is; beide zijn nu zelf gelezen. De uitleg bij de negen gezichtspunten is in
+beide woordelijk gelijk. Wat er niet in staat: geen termijn bij gezichtspunt 1 en geen
+factor ten opzichte van het cao-loon bij gezichtspunt 7, en ook niet de kenmerkentabel
+die hieronder als SZW_TABEL staat. Daarmee is het spoor van de twee verwijderde
+vuistregels afgelopen: ook deze bron noemt ze niet.
 
 Bronverificatie ACTUELE_FEITEN 11-09-2026 (2026-09-11 07:28 UTC). Tot die datum zei de
 regel "wet_vbar" dat de Wet VBAR en de Wet WTTA "nog NIET ingevoerd" waren en dat de
@@ -41,13 +45,47 @@ vindplaats en de status. De weging bij gezichtspunt 3 is in dezelfde ronde herst
 stond dat de Hoge Raad dat gezichtspunt zwaar weegt, wat in strijd is met r.o. 3.3 van het
 Uber-arrest en met de regel hoger in dezelfde systeemprompt dat er geen rangorde geldt.
 
-Nog niet hersteld en met opzet niet zelf gewijzigd: het achtste gezichtspunt hieronder
-("Al dan niet betalen van omzetbelasting") is niet het achtste gezichtspunt van de Hoge
-Raad. In r.o. 3.2.5 van het Deliveroo-arrest is dat "de vraag of degene die de
-werkzaamheden verricht daarbij commercieel risico loopt"; de fiscale behandeling is daar
-juist een deelaspect van het negende gezichtspunt. Het SZW-toetsingskader van juli 2026
-noemt bij 8 eveneens het commercieel risico. Dat raakt de vragenlijst en het model, niet
-alleen een verwijzing; zie OPENSTAANDE-VRAGEN.md.
+Bronverificatie gezichtspunt 8 en 9, 11-09-2026 (2026-09-11 09:49 UTC). Tot die datum
+heette het achtste gezichtspunt hieronder "Al dan niet betalen van omzetbelasting". Dat is
+niet het achtste gezichtspunt van de Hoge Raad; het commercieel risico ontbrak daardoor
+geheel in de systeemprompt en in de vragenlijst, terwijl de tool wel de belofte doet de
+negen gezichtspunten uit het arrest te volgen. Zelf gelezen bewijs:
+
+- ECLI:NL:HR:2023:443 (Deliveroo), r.o. 3.2.5, volledige tekst opgehaald via
+  data.rechtspraak.nl. Het achtste gezichtspunt is daar letterlijk "de vraag of degene die
+  de werkzaamheden verricht daarbij commercieel risico loopt". De fiscale behandeling is
+  geen zelfstandig gezichtspunt maar een van de voorbeelden bij het negende: het gedrag
+  als ondernemer in het economisch verkeer, "bijvoorbeeld bij het verwerven van een
+  reputatie, bij acquisitie, wat betreft fiscale behandeling, en gelet op het aantal
+  opdrachtgevers voor wie hij werkt of heeft gewerkt en de duur waarvoor hij zich
+  doorgaans aan een bepaalde opdrachtgever verbindt".
+- ECLI:NL:HR:2025:319 (Uber), r.o. 3.1. Daar citeert de Hoge Raad r.o. 3.2.5 van Deliveroo
+  en voegt daaraan zelf een nummering toe ("de nummering van omstandigheden in rov. 3.2.5
+  is toegevoegd"): [viii] is het commercieel risico en [ix] het gedrag als ondernemer in
+  het economisch verkeer. Dat is dus de nummering van de Hoge Raad zelf en niet die van
+  een samenvatting. R.o. 3.6.1 noemt het commercieel risico daarbij uitdrukkelijk als een
+  omstandigheid binnen de te beoordelen verhouding die op ondernemerschap kan wijzen, en
+  r.o. 3.6.2 bepaalt dat het negende gezichtspunt ook ziet op omstandigheden buiten die
+  verhouding.
+- Toetsingskader Beoordeling arbeidsrelaties, SZW, juli 2026, PDF zelf gelezen met pypdf.
+  Gezichtspunt 8 heet daar "Mate waarin de opdrachtnemer bij de opdracht commercieel
+  risico loopt", met als elementen de verdeling van risico's tussen opdrachtnemer en
+  opdrachtgever bij schade aan derden, ziekte, ongeval en investeringen, en de mate waarin
+  de opdrachtnemer verantwoordelijk is voor de kwaliteit van het resultaat (moet hij
+  ondermaats werk in eigen tijd en voor eigen rekening herstellen).
+- Toelichting Beoordeling arbeidsrelaties - Beslis- en afwegingskader, Belastingdienst,
+  uitgave april 2026, formulier LH 630-1Z*2PL, PDF zelf gelezen met pypdf. Dit is de
+  primaire uitvoeringsbron waarvan het SZW-kader een verkorte afgeleide is, en de uitleg
+  bij gezichtspunt 8 is er woordelijk gelijk aan. Bij gezichtspunt 9 noemt dit kader de
+  fiscale behandeling in eigen woorden: "hoe behandelt de Belastingdienst de
+  opdrachtnemer". Dat bevestigt dat de btw-, KVK- en IB-vragen bij 9 thuishoren.
+
+Gekozen weg: gezichtspunt 8 is vervangen door het commercieel risico. De btw-, KVK- en
+IB-vragen zijn niet geschrapt maar verplaatst naar gezichtspunt 9, omdat de fiscale
+behandeling daar volgens r.o. 3.2.5 thuishoort. Zij wegen dus nog mee, maar als deelaspect
+van het ondernemersgedrag en niet als zelfstandig gezichtspunt met een eigen negende deel
+van de weging. De vragenlijst in app.py telt daardoor 27 vragen in plaats van 25: bij
+gezichtspunt 8 staan vier vragen over risicoverdeling, bij gezichtspunt 9 vijf vragen.
 """
 
 NEGEN_GEZICHTSPUNTEN = [
@@ -131,28 +169,64 @@ NEGEN_GEZICHTSPUNTEN = [
     },
     {
         "nummer": 8,
-        "naam": "Al dan niet betalen van omzetbelasting",
+        "naam": "Commercieel risico voor degene die de werkzaamheden verricht",
         "toelichting": (
-            "Het in rekening brengen van BTW en het doen van btw-aangifte wijst op ondernemerschap. "
-            "KVK-inschrijving en aangifte IB als ondernemer (winst uit onderneming, evt. zelfstandigenaftrek) "
-            "versterken dit beeld. Ontbreken van BTW of geen actieve KVK-inschrijving zijn risicosignalen."
+            "Het achtste gezichtspunt is de vraag of degene die de werkzaamheden verricht daarbij "
+            "commercieel risico loopt (Deliveroo-arrest, HR 24 maart 2023, ECLI:NL:HR:2023:443, "
+            "r.o. 3.2.5; in het Uber-arrest, HR 21 februari 2025, ECLI:NL:HR:2025:319, r.o. 3.1, "
+            "nummert de Hoge Raad deze omstandigheid zelf als [viii]). Het gaat om de verdeling van "
+            "risico's tussen opdrachtnemer en opdrachtgever, onder meer bij schade aan derden, ziekte, "
+            "ongeval en investeringen, en om de mate waarin de opdrachtnemer verantwoordelijk is voor de "
+            "kwaliteit van het resultaat: moet hij ondermaats werk in eigen tijd en voor eigen rekening "
+            "herstellen? Ligt het risico bij de opdrachtnemer, dan wijst dat op ZZP-schap; ligt het bij "
+            "de opdrachtgever, dan wijst dat op loondienst. Bij een verdeeld risico geldt: hoe meer "
+            "risico bij de opdrachtnemer, hoe sterker het signaal naar ZZP-schap (Belastingdienst, "
+            "Toelichting Beoordeling arbeidsrelaties – Beslis- en afwegingskader, uitgave april "
+            "2026, gezichtspunt 8, woordelijk gelijk in het Toetsingskader Beoordeling "
+            "arbeidsrelaties van SZW van juli 2026). LET OP: de fiscale "
+            "behandeling hoort niet bij dit gezichtspunt maar bij het negende; weeg btw, KVK en "
+            "inkomstenbelasting dus daar en niet hier."
         ),
     },
     {
         "nummer": 9,
         "naam": "Gedrag als ondernemer in het economisch verkeer",
         "toelichting": (
-            "Actief meerdere opdrachtgevers hebben, investeren in eigen bedrijfsmiddelen, dragen van financieel "
-            "risico (aansprakelijkheid bij fouten, no cure no pay), eigen acquisitie, website en branding wijzen "
-            "op ondernemerschap. Exclusief voor één opdrachtgever werken is een sterk risicosignaal."
+            "Het negende gezichtspunt is of degene die de werkzaamheden verricht zich in het economisch "
+            "verkeer als ondernemer gedraagt of kan gedragen, volgens r.o. 3.2.5 van het Deliveroo-arrest "
+            "(HR 24 maart 2023, ECLI:NL:HR:2023:443) bijvoorbeeld bij het verwerven van een reputatie, bij "
+            "acquisitie, wat betreft fiscale behandeling, en gelet op het aantal opdrachtgevers voor wie "
+            "hij werkt of heeft gewerkt en de duur waarvoor hij zich doorgaans aan een bepaalde "
+            "opdrachtgever verbindt. De fiscale behandeling valt dus onder dit gezichtspunt en is geen "
+            "zelfstandig gezichtspunt: btw in rekening brengen en btw-aangifte doen, een actieve "
+            "KVK-inschrijving en aangifte inkomstenbelasting als ondernemer (winst uit onderneming, "
+            "eventueel met zelfstandigenaftrek) wijzen op ondernemerschap, en het ontbreken daarvan is een "
+            "risicosignaal. Ook eigen acquisitie, website en branding wegen mee; exclusief voor één "
+            "opdrachtgever werken is een sterk risicosignaal. Dit gezichtspunt ziet ook op "
+            "ondernemerskenmerken buiten de te beoordelen arbeidsrelatie (Uber-arrest, HR 21 februari 2025, "
+            "ECLI:NL:HR:2025:319, r.o. 3.6.2) en heeft geen ander gewicht dan de andere acht (r.o. 3.3). "
+            "Het dragen van commercieel risico weeg je niet hier maar bij het achtste gezichtspunt."
         ),
     },
 ]
 
+# Werktabel met kenmerken, per index gepaard: regel n van de ene lijst is de tegenhanger
+# van regel n van de andere. Nagelopen op 11-09-2026 bij het herstel van gezichtspunt 8.
+# Het financieel risico stond hier al, maar in een vorm die alleen aansprakelijkheid bij
+# fouten noemde. De regels zijn gelijkgetrokken met de elementen die bij gezichtspunt 8
+# horen: schade aan derden, ziekte, ongeval, investeringen en de verantwoordelijkheid voor
+# de kwaliteit van het resultaat (Toetsingskader Beoordeling arbeidsrelaties, SZW, juli
+# 2026, gezichtspunt 8). De btw- en KVK-regels blijven staan; zij horen sinds dezelfde
+# ronde bij gezichtspunt 9. De herkomst van deze tabel zelf blijft een openstaande vraag.
+# Nagemeten op 11-09-2026: de tabel komt niet voor in het beslis- en afwegingskader van de
+# Belastingdienst (april 2026) en niet in het toetsingskader van SZW (juli 2026, beide PDF
+# zelf uitgelezen). Zij is dus geen citaat uit een officiele bron maar een werktabel, en
+# de naam SZW_TABEL suggereert meer herkomst dan er is; zie OPENSTAANDE-VRAGEN.md.
 SZW_TABEL = {
     "zzp_kenmerken": [
         "Bepaalt zelf hoe het werk wordt uitgevoerd",
-        "Draagt financieel risico (aansprakelijkheid, no cure no pay)",
+        "Draagt commercieel risico: aansprakelijk bij schade aan derden, geen doorbetaling bij ziekte of ongeval",
+        "Herstelt een ondermaats resultaat in eigen tijd en voor eigen rekening (no cure no pay)",
         "Investeert in eigen bedrijfsmiddelen of gereedschap",
         "Heeft meerdere opdrachtgevers (actief)",
         "Kan zich vrij laten vervangen door iemand naar eigen keuze",
@@ -164,7 +238,8 @@ SZW_TABEL = {
     ],
     "loondienst_kenmerken": [
         "Ontvangt instructies over hoe, wanneer en waar te werken",
-        "Opdrachtgever draagt het financiële risico",
+        "Opdrachtgever draagt het risico bij schade aan derden, ziekte en ongeval",
+        "Een ondermaats resultaat wordt in de tijd en voor rekening van de opdrachtgever hersteld",
         "Werkt met materialen, systemen of gereedschap van de opdrachtgever",
         "Werkt exclusief of vrijwel exclusief voor één opdrachtgever",
         "Moet persoonlijk werken; vervanging niet of nauwelijks toegestaan",
@@ -252,6 +327,17 @@ BRONNEN = {
         # De Wtta gaat over uitleners, niet over de kwalificatie van een zzp-relatie.
         "url": "https://zoek.officielebekendmakingen.nl/stb-2025-385.html",
         "inhoud": "Toelatingsstelsel voor uitleners; in werking per 1 januari 2027 (Besluit van 24 juni 2026, Stb. 2026, 159), met onderdelen per 1 juli 2026 en 1 januari 2028",
+    },
+    "afwegingskader_belastingdienst": {
+        "naam": "Belastingdienst: Toelichting Beoordeling arbeidsrelaties – Beslis- en afwegingskader",
+        "datum": "april 2026",
+        # PDF zelf gelezen 11-09-2026 (8 pagina's, formulier LH 630-1Z*2PL). Dit is de
+        # primaire uitvoeringsbron; het SZW-toetsingskader is er een verkorte afgeleide
+        # van. Gezichtspunt 8 staat er woordelijk gelijk in. Eerdere sessies kregen deze
+        # PDF niet machinaal uitgelezen; de route die werkt is curl naar een map buiten
+        # de sessiemap, daarna pypdf.
+        "url": "https://download.belastingdienst.nl/belastingdienst/docs/afwegingskader_dienstbetrekking_lh6301z2pl.pdf",
+        "inhoud": "Beslis- en afwegingskader met de uitleg per gezichtspunt; gezichtspunt 8 is de mate waarin de opdrachtnemer bij de opdracht commercieel risico loopt",
     },
     "toetsingskader_szw": {
         "naam": "Ministerie van SZW: Toetsingskader Beoordeling arbeidsrelaties",
