@@ -41,7 +41,9 @@ Handhaving: {ACTUELE_FEITEN['handhaving']}
 
 Modelovereenkomsten: {ACTUELE_FEITEN['modelovereenkomsten']}
 
-Wet VBAR: {ACTUELE_FEITEN['wet_vbar']}
+Rechtsvermoeden op uurtarief: {ACTUELE_FEITEN['rechtsvermoeden_uurtarief']}
+
+Wet toelating terbeschikkingstelling van arbeidskrachten: {ACTUELE_FEITEN['wtta']}
 
 ## BRONNEN
 {bronnen}"""
