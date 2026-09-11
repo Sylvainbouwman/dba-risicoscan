@@ -5,6 +5,8 @@ Beoordeling arbeidsrelatie op basis van de negen gezichtspunten (Deliveroo / Ube
 
 from __future__ import annotations
 
+from datetime import date
+
 import anthropic
 import streamlit as st
 
@@ -443,6 +445,30 @@ def toon_resultaten(analyse: dict, intake: dict) -> None:
 # Sidebar
 # ---------------------------------------------------------------------------
 
+def kennisbasis_verlopen(vandaag: date | None = None) -> bool:
+    """Is de jaargebonden stand in ACTUELE_FEITEN over zijn houdbaarheidsdatum heen?
+
+    De handhavingsregels en het rechtsvermoeden op uurtarief zijn jaargebonden: per
+    1 januari 2027 vervalt de zachte landing en treedt artikel 7:610aa BW in werking.
+    Zonder deze toets zou een verouderde kennisbasis stilzwijgend de systeemprompt in
+    gaan; zie de docstring van knowledge_base.py.
+    """
+    grens = date.fromisoformat(ACTUELE_FEITEN["controle_uiterlijk"])
+    return (vandaag or date.today()) >= grens
+
+
+def toon_houdbaarheidswaarschuwing() -> None:
+    if kennisbasis_verlopen():
+        st.error(
+            "De kennisbasis is bijgewerkt per "
+            f"{ACTUELE_FEITEN['bijgewerkt']} en is over zijn houdbaarheidsdatum van "
+            f"{ACTUELE_FEITEN['controle_uiterlijk']} heen. De handhavingsregels en het "
+            "rechtsvermoeden op uurtarief zijn sindsdien gewijzigd. Laat de beheerder de "
+            "kennisbasis controleren voordat u op de uitkomst vertrouwt.",
+            icon="🚨",
+        )
+
+
 def toon_sidebar() -> None:
     with st.sidebar:
         st.title("DBA Risicoscan")
@@ -458,14 +484,18 @@ def toon_sidebar() -> None:
 
         st.markdown("**Belangrijke actualiteiten**")
         st.warning(
-            "Normale handhaving hervat per 1 jan 2025. "
+            "Normale handhaving hervat per 1 jan 2025. In 2026 geen verzuimboetes, wel "
+            "vergrijpboetes; per 1 jan 2027 vervalt die zachte landing. "
             "Modelovereenkomsten bieden geen zekerheid als de praktijk afwijkt.",
             icon="⚠️",
         )
         st.info(
-            "Wet VBAR (rechtsvermoeden) is nog **niet** ingevoerd.",
+            "Het **rechtsvermoeden op uurtarief** (art. 7:610aa BW) treedt in werking op "
+            "31 dec 2026. Het werkt alleen civielrechtelijk en verandert de fiscale "
+            "beoordeling niet.",
             icon="ℹ️",
         )
+        toon_houdbaarheidswaarschuwing()
 
         st.divider()
         st.markdown("**Bronnen**")

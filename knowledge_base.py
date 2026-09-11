@@ -29,7 +29,25 @@ geen grondslag waarop deze tool een risicosignaal mag baseren.
 
 Niet gelukte controle: de PDF "Toelichting Beoordeling arbeidsrelaties, beslis- en
 afwegingskader" (Belastingdienst, formulier LH 630-1Z*2PL) bleek niet machinaal te
-lezen. Die bron is dus niet zelf nagekeken; zie OPENSTAANDE-VRAGEN.md.
+lezen. Die bron is dus niet zelf nagekeken; zie OPENSTAANDE-VRAGEN.md. Wel is de
+verkorte afgeleide ervan gelezen: het Toetsingskader Beoordeling arbeidsrelaties van
+SZW, uitgave juli 2026, opgehaald van open.overheid.nl en uitgelezen met pypdf.
+
+Bronverificatie ACTUELE_FEITEN 11-09-2026 (2026-09-11 07:28 UTC). Tot die datum zei de
+regel "wet_vbar" dat de Wet VBAR en de Wet WTTA "nog NIET ingevoerd" waren en dat de
+status "politiek onzeker" was, met bijwerkdatum 3 juli 2026. Beide beweringen waren
+achterhaald; de vervangende regels staan hieronder bij ACTUELE_FEITEN, met per regel de
+vindplaats en de status. De weging bij gezichtspunt 3 is in dezelfde ronde hersteld: daar
+stond dat de Hoge Raad dat gezichtspunt zwaar weegt, wat in strijd is met r.o. 3.3 van het
+Uber-arrest en met de regel hoger in dezelfde systeemprompt dat er geen rangorde geldt.
+
+Nog niet hersteld en met opzet niet zelf gewijzigd: het achtste gezichtspunt hieronder
+("Al dan niet betalen van omzetbelasting") is niet het achtste gezichtspunt van de Hoge
+Raad. In r.o. 3.2.5 van het Deliveroo-arrest is dat "de vraag of degene die de
+werkzaamheden verricht daarbij commercieel risico loopt"; de fiscale behandeling is daar
+juist een deelaspect van het negende gezichtspunt. Het SZW-toetsingskader van juli 2026
+noemt bij 8 eveneens het commercieel risico. Dat raakt de vragenlijst en het model, niet
+alleen een verwijzing; zie OPENSTAANDE-VRAGEN.md.
 """
 
 NEGEN_GEZICHTSPUNTEN = [
@@ -62,7 +80,12 @@ NEGEN_GEZICHTSPUNTEN = [
         "toelichting": (
             "Als de opdrachtnemer functioneert als onderdeel van het vaste team, gebruik maakt van het e-mailadres, "
             "visitekaartjes of systemen van de opdrachtgever, en vergelijkbaar werk doet als vaste medewerkers, "
-            "wijst dit sterk op loondienst. Dit gezichtspunt wordt door de Hoge Raad zwaar gewogen in Deliveroo en Uber."
+            "wijst dit sterk op loondienst. Ook telt mee of het werk een wezenlijk onderdeel vormt van de "
+            "bedrijfsvoering van de opdrachtgever. Inbedding is het derde gezichtspunt uit het Deliveroo-arrest "
+            "(HR 24 maart 2023, ECLI:NL:HR:2023:443, r.o. 3.2.5). Ken dit gezichtspunt geen vast zwaarder gewicht "
+            "toe dan de andere acht: de Hoge Raad heeft tussen de gezichtspunten geen rangorde aangebracht en ziet "
+            "daarvoor ook nu geen aanleiding (Uber-arrest, HR 21 februari 2025, ECLI:NL:HR:2025:319, r.o. 3.3). "
+            "Dat het gewicht van een gezichtspunt per situatie kan verschillen, is iets anders dan een rangorde vooraf."
         ),
     },
     {
@@ -178,18 +201,68 @@ BRONNEN = {
     "belastingdienst_handhaving": {
         "naam": "Belastingdienst: Handhaving arbeidsrelaties",
         "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/arbeidsrelaties/content/handhaving",
-        "inhoud": "Normale handhaving hervat per 1 januari 2025; zachte landing boetes in 2026",
+        # Geraadpleegd 11-09-2026: "We leggen in 2026 nog geen verzuimboetes op" en
+        # "Vanaf 1 januari 2026 kunnen we wel vergrijpboetes opleggen".
+        "inhoud": "Normale handhaving hervat per 1 januari 2025; in 2026 geen verzuimboetes, wel vergrijpboetes",
+    },
+    "kamerbrief_zachte_landing": {
+        "naam": "Kamerbrief Gedeeltelijke verlenging zachte landing handhaving schijnzelfstandigheid",
+        "datum": "19 december 2025",
+        # Dossier 31311. PDF zelf gelezen 11-09-2026 via open.overheid.nl. Letterlijk:
+        # de zachte landing wordt in 2026 deels verlengd "door ook in 2026 geen
+        # verzuimboetes op te leggen en in beginsel te starten met een bedrijfsbezoek.
+        # Pas vanaf 1 januari 2027 zullen ook deze elementen van de zachte landing komen
+        # te vervallen."
+        "url": "https://www.rijksoverheid.nl/documenten/kamerstukken/2025/12/19/gedeeltelijke-verlenging-zachte-landing-handhaving-schijnzelfstandigheid",
+        "inhoud": "Zachte landing in 2026 deels verlengd (geen verzuimboetes, in beginsel bedrijfsbezoek); die elementen vervallen per 1 januari 2027",
     },
     "belastingdienst_model": {
         "naam": "Belastingdienst: Modelovereenkomsten",
         "url": "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/ondernemen/modelovereenkomsten-in-plaats-van-var/arbeidsrelaties",
-        "inhoud": "Geen nieuwe beoordelingen meer since 6 sept 2024; bestaande geldig t/m 31 dec 2029",
+        # Geraadpleegd 11-09-2026 op de pagina "Geen nieuwe modelovereenkomsten meer".
+        "inhoud": "Sinds 6 september 2024 geen nieuwe beoordelingen; op die datum goedgekeurde overeenkomsten geldig t/m 31 december 2029",
     },
     "rijksoverheid_schijnzelfstandigheid": {
         "naam": "Rijksoverheid: Veelgestelde vragen over schijnzelfstandigheid",
         "url": "https://www.rijksoverheid.nl/themas/werk/zelfstandigen-zonder-personeel-zzp/veelgestelde-vragen-schijnzelfstandigheid",
         # Geraadpleegd 11-09-2026. Noemt geen termijn en geen tariefdrempel.
         "inhoud": "Ook bij een hoog uurtarief kan sprake zijn van schijnzelfstandigheid; het tarief is maar een van de criteria",
+    },
+    "stb_2026_158": {
+        "naam": "Wet invoering rechtsvermoeden van arbeidsovereenkomst op basis van uurtarief",
+        "datum": "18 juni 2026, Stb. 2026, 158",
+        # Staatsblad zelf gelezen 11-09-2026. Art. I voert art. 7:610aa BW in; art. III
+        # regelt inwerkingtreding bij koninklijk besluit en bepaalt dat het toepasselijke
+        # bedrag voor de eerste toepassing bij ministeriele regeling wordt vastgesteld.
+        "url": "https://zoek.officielebekendmakingen.nl/stb-2026-158.html",
+        "inhoud": "Voert art. 7:610aa BW in: wie arbeid verricht tegen ten hoogste EUR 36 per uur wordt vermoed dat krachtens arbeidsovereenkomst te doen; civielrechtelijk vermoeden, geen fiscale beoordelingsregel",
+    },
+    "stb_2026_207": {
+        "naam": "Besluit vaststelling tijdstip inwerkingtreding rechtsvermoeden uurtarief",
+        "datum": "13 juli 2026, Stb. 2026, 207",
+        # Staatsblad zelf gelezen 11-09-2026; gepubliceerd 15 juli 2026.
+        "url": "https://zoek.officielebekendmakingen.nl/stb-2026-207.html",
+        "inhoud": "De wet van 18 juni 2026 treedt in werking met ingang van 31 december 2026",
+    },
+    "wtta": {
+        "naam": "Wet toelating terbeschikkingstelling van arbeidskrachten (Wtta)",
+        "datum": "12 november 2025, Stb. 2025, 385",
+        # Wet en inwerkingtredingsbesluit (Besluit van 24 juni 2026, Stb. 2026, 159)
+        # vastgesteld op 11-09-2026 via de SRU-catalogus van officielebekendmakingen.nl.
+        # De Wtta gaat over uitleners, niet over de kwalificatie van een zzp-relatie.
+        "url": "https://zoek.officielebekendmakingen.nl/stb-2025-385.html",
+        "inhoud": "Toelatingsstelsel voor uitleners; in werking per 1 januari 2027 (Besluit van 24 juni 2026, Stb. 2026, 159), met onderdelen per 1 juli 2026 en 1 januari 2028",
+    },
+    "toetsingskader_szw": {
+        "naam": "Ministerie van SZW: Toetsingskader Beoordeling arbeidsrelaties",
+        "datum": "juli 2026",
+        # PDF zelf gelezen 11-09-2026 (4 pagina's, uitgave SZW juli 2026). Verkorte
+        # afgeleide van het beslis- en afwegingskader van de Belastingdienst. Volgens
+        # berichtgeving in de vakpers past SZW deze versie aan omdat formuleringen
+        # afwijken van de arresten; daarom is hieruit alleen de weging overgenomen, die
+        # woordelijk strookt met r.o. 3.3 van het Uber-arrest.
+        "url": "https://open.overheid.nl/details/37593cde-4044-4634-93cb-dfbc8375e629",
+        "inhoud": "Tussen de negen gezichtspunten geldt geen rangorde; het belang van een gezichtspunt kan per situatie verschillen",
     },
     "webmodule": {
         "naam": "Webmodule Beoordeling Arbeidsrelatie",
@@ -203,22 +276,76 @@ BRONNEN = {
     },
 }
 
+# Elke regel hieronder gaat via prompts.py letterlijk de systeemprompt in en weegt dus
+# mee in het signaal dat de gebruiker ziet. Daarom staat bij elke regel de vindplaats,
+# en waar de regel jaargebonden is of nog geen geldend recht is, ook de status.
+# Geverifieerd 11-09-2026 (2026-09-11 07:28 UTC); zie de docstring bovenaan.
 ACTUELE_FEITEN = {
+    # JAARGEBONDEN, geldt voor 2026. Bron: Kamerbrief 19 december 2025 "Gedeeltelijke
+    # verlenging zachte landing handhaving schijnzelfstandigheid" (dossier 31311),
+    # bevestigd op de pagina Handhaving arbeidsrelaties van de Belastingdienst.
+    # Zie BRONNEN["kamerbrief_zachte_landing"] en BRONNEN["belastingdienst_handhaving"].
     "handhaving": (
         "Normale handhavingsregels gelden weer per 1 januari 2025. "
-        "In 2026 worden verzuimboetes nog niet opgelegd (zachte landing). "
-        "Vergrijpboetes (bij evidente schijnzelfstandigheid of kwaadwillendheid) kunnen wel worden opgelegd. "
-        "Correctieverplichtingen en naheffingen loonheffingen zijn reeds actief."
+        "Voor 2026 geldt een gedeeltelijk verlengde zachte landing: er worden geen verzuimboetes opgelegd "
+        "en de Belastingdienst start in beginsel met een bedrijfsbezoek. "
+        "Vergrijpboetes (bij opzet of grove schuld) kunnen sinds 1 januari 2026 wel worden opgelegd. "
+        "Correctieverplichtingen en naheffingen loonheffingen zijn actief: naheffen kan terug tot "
+        "1 januari 2025, en bij kwaadwillendheid tot vijf jaar terug. "
+        "Per 1 januari 2027 vervallen ook de verzuimboete- en bedrijfsbezoekelementen van de zachte landing."
     ),
+    # Bron: Belastingdienst, "Geen nieuwe modelovereenkomsten meer", geraadpleegd
+    # 11-09-2026. Letterlijk: "Sinds 6 september 2024 beoordelen we geen nieuwe
+    # overeenkomsten meer" en "Goedgekeurde modelovereenkomsten die geldig waren op
+    # 6 september 2024, mag u blijven gebruiken tot en met 31 december 2029."
     "modelovereenkomsten": (
-        "De Belastingdienst beoordeelt geen nieuwe modelovereenkomsten meer since 6 september 2024. "
-        "Bestaande goedgekeurde modelovereenkomsten mogen worden gebruikt tot uiterlijk 31 december 2029. "
+        "De Belastingdienst beoordeelt sinds 6 september 2024 geen nieuwe modelovereenkomsten meer. "
+        "Modelovereenkomsten die op 6 september 2024 waren goedgekeurd, mogen worden gebruikt "
+        "tot en met 31 december 2029. "
         "CRUCIAAL: een modelovereenkomst biedt GEEN zekerheid als de feitelijke uitvoering ervan afwijkt. "
         "De Belastingdienst beoordeelt altijd de feitelijke situatie, niet het papier."
     ),
-    "wet_vbar": (
-        "De Wet VBAR (rechtsvermoeden arbeidsrelatie) en Wet WTTA zijn nog NIET ingevoerd. "
-        "Status: politiek onzeker, behandeling loopt. Niet van toepassing op huidige situaties."
+    # AANGENOMEN WET MET LATERE INGANGSDATUM, nog geen geldend recht op de bijwerkdatum.
+    # Wet van 18 juni 2026, Stb. 2026, 158 (BRONNEN["stb_2026_158"]); inwerkingtreding
+    # 31 december 2026 bij Besluit van 13 juli 2026, Stb. 2026, 207
+    # (BRONNEN["stb_2026_207"]). Het bedrag van EUR 36 staat in de wettekst zelf; het
+    # bedrag dat bij de eerste toepassing geldt, wordt op grond van artikel III, tweede
+    # lid, bij ministeriele regeling vastgesteld. Die regeling is op 11-09-2026 niet
+    # gevonden in Staatsblad of Staatscourant (drie zoekslagen via de SRU-catalogus van
+    # officielebekendmakingen.nl). Het kabinet noemt in zijn nieuwsbericht van
+    # 6 maart 2026 een bedrag van 38 euro per uur met peildatum 1 januari 2026; dat is
+    # voorlichting en geen vastgesteld bedrag, en het staat daarom bewust niet hieronder.
+    "rechtsvermoeden_uurtarief": (
+        "De Wet invoering rechtsvermoeden van arbeidsovereenkomst op basis van een uurtarief "
+        "(wet van 18 juni 2026, Stb. 2026, 158) is aangenomen en gepubliceerd, maar treedt pas "
+        "op 31 december 2026 in werking (Besluit van 13 juli 2026, Stb. 2026, 207). "
+        "Zij voert artikel 7:610aa BW in: wie tegen een beloning van ten hoogste EUR 36 per uur arbeid "
+        "verricht, wordt vermoed dat krachtens arbeidsovereenkomst te doen. Het bedrag dat bij de eerste "
+        "toepassing geldt, wordt bij ministeriele regeling vastgesteld en stond op de bijwerkdatum nog niet vast. "
+        "BELANGRIJK voor deze analyse: dit rechtsvermoeden werkt alleen civielrechtelijk, tussen werkende en "
+        "werkgevende, en verandert niets aan de fiscale beoordeling van de arbeidsrelatie. Gebruik het bedrag "
+        "daarom NIET als drempel of vuistregel bij het wegen van de negen gezichtspunten, en noem het alleen "
+        "als vooruitblik wanneer de opdracht doorloopt tot na 31 december 2026. "
+        "Het verduidelijkingsdeel van het oorspronkelijke wetsvoorstel VBAR is geschrapt; het kabinet "
+        "kondigde op 6 maart 2026 een Zelfstandigenwet aan als vervanger, en die is er nog niet."
     ),
-    "bijgewerkt": "3 juli 2026",
+    # AANGENOMEN WET, gedeeltelijk in werking. Wet van 12 november 2025, Stb. 2025, 385;
+    # inwerkingtreding per 1 januari 2027 bij Besluit van 24 juni 2026, Stb. 2026, 159,
+    # met onderdelen per 1 juli 2026 en 1 januari 2028. Zie BRONNEN["wtta"]. Opgenomen
+    # omdat de kennisbasis deze wet noemde; zij raakt uitleners en niet de kwalificatie
+    # van de arbeidsrelatie zelf.
+    "wtta": (
+        "De Wet toelating terbeschikkingstelling van arbeidskrachten (Wtta, Stb. 2025, 385) treedt "
+        "in werking per 1 januari 2027; enkele onderdelen gelden al sinds 1 juli 2026 en de handhaving "
+        "volgt per 1 januari 2028. De Wtta regelt een toelatingsplicht voor het ter beschikking stellen "
+        "van arbeidskrachten en gaat dus over uitleners. Zij verandert niets aan de vraag of een "
+        "opdrachtnemer zelfstandige of werknemer is; noem haar alleen wanneer de opdracht via een "
+        "intermediair loopt."
+    ),
+    "bijgewerkt": "11 september 2026",
+    # Uiterlijke houdbaarheid van de jaargebonden regels hierboven: per 1 januari 2027
+    # vervalt de zachte landing en treedt het rechtsvermoeden in werking. De app
+    # waarschuwt zichtbaar zodra deze datum is verstreken, zodat een verouderde
+    # kennisbasis niet stilzwijgend de systeemprompt in gaat.
+    "controle_uiterlijk": "2027-01-01",
 }

@@ -40,10 +40,13 @@ De negen gezichtspunten uit het Deliveroo-arrest (ECLI:NL:HR:2023:443), bevestig
 
 Tussen deze gezichtspunten geldt geen rangorde; zij worden holistisch gewogen.
 
-**Actuele stand van zaken (3 juli 2026):**
-- Normale handhaving hervat per 1 januari 2025
-- Modelovereenkomsten: geen nieuwe beoordelingen meer since 6 september 2024; bestaande geldig t/m 31 december 2029
-- Wet VBAR (rechtsvermoeden): nog niet ingevoerd
+**Actuele stand van zaken (11 september 2026):**
+- Normale handhaving hervat per 1 januari 2025. Voor 2026 geldt een gedeeltelijk verlengde zachte landing: geen verzuimboetes, wel vergrijpboetes bij opzet of grove schuld, en in beginsel eerst een bedrijfsbezoek. Per 1 januari 2027 vervallen die elementen ([Kamerbrief 19 december 2025](https://www.rijksoverheid.nl/documenten/kamerstukken/2025/12/19/gedeeltelijke-verlenging-zachte-landing-handhaving-schijnzelfstandigheid))
+- Modelovereenkomsten: sinds 6 september 2024 geen nieuwe beoordelingen; op die datum goedgekeurde overeenkomsten geldig t/m 31 december 2029
+- Rechtsvermoeden op uurtarief: de wet van 18 juni 2026 ([Stb. 2026, 158](https://zoek.officielebekendmakingen.nl/stb-2026-158.html)) voert artikel 7:610aa BW in en treedt in werking op 31 december 2026 ([Stb. 2026, 207](https://zoek.officielebekendmakingen.nl/stb-2026-207.html)). Het vermoeden werkt alleen civielrechtelijk en verandert de fiscale beoordeling niet. Het verduidelijkingsdeel van het wetsvoorstel VBAR is geschrapt
+- Wet toelating terbeschikkingstelling van arbeidskrachten (Wtta): in werking per 1 januari 2027; raakt uitleners, niet de kwalificatie van een zzp-relatie
+
+De jaargebonden regels hierboven hebben een houdbaarheidsdatum van 1 januari 2027. Is die verstreken zonder dat de kennisbasis is bijgewerkt, dan waarschuwt de app daar zichtbaar over.
 
 ---
 
