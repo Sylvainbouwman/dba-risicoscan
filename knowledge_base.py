@@ -210,19 +210,18 @@ NEGEN_GEZICHTSPUNTEN = [
     },
 ]
 
-# Werktabel met kenmerken, per index gepaard: regel n van de ene lijst is de tegenhanger
-# van regel n van de andere. Nagelopen op 11-09-2026 bij het herstel van gezichtspunt 8.
-# Het financieel risico stond hier al, maar in een vorm die alleen aansprakelijkheid bij
-# fouten noemde. De regels zijn gelijkgetrokken met de elementen die bij gezichtspunt 8
-# horen: schade aan derden, ziekte, ongeval, investeringen en de verantwoordelijkheid voor
-# de kwaliteit van het resultaat (Toetsingskader Beoordeling arbeidsrelaties, SZW, juli
-# 2026, gezichtspunt 8). De btw- en KVK-regels blijven staan; zij horen sinds dezelfde
-# ronde bij gezichtspunt 9. De herkomst van deze tabel zelf blijft een openstaande vraag.
-# Nagemeten op 11-09-2026: de tabel komt niet voor in het beslis- en afwegingskader van de
-# Belastingdienst (april 2026) en niet in het toetsingskader van SZW (juli 2026, beide PDF
-# zelf uitgelezen). Zij is dus geen citaat uit een officiele bron maar een werktabel, en
-# de naam SZW_TABEL suggereert meer herkomst dan er is; zie OPENSTAANDE-VRAGEN.md.
-SZW_TABEL = {
+# Eigen hulplijst, geen citaat uit een bron. Per index gepaard: regel n van de ene lijst
+# is de tegenhanger van regel n van de andere. Nagemeten op 11-09-2026: deze indeling komt
+# niet voor in het beslis- en afwegingskader van de Belastingdienst (april 2026) en niet in
+# het toetsingskader van SZW (juli 2026, beide PDF zelf uitgelezen). De vorige naam
+# SZW_TABEL suggereerde een officiele herkomst die er niet is; op besluit van Sylvain
+# (15-09-2026) hernoemd naar deze neutrale vorm, met dezelfde vermelding in de systeemprompt
+# zelf (zie prompts.py). Regel voor regel herleiden tot een gezichtspunt met vindplaats
+# blijft de vervolgstap, zie OPENSTAANDE-VRAGEN.md. Inhoudelijk ongewijzigd: het financieel
+# risico is op 11-09-2026 al gelijkgetrokken met de elementen van gezichtspunt 8 (schade aan
+# derden, ziekte, ongeval, investeringen, verantwoordelijkheid voor de kwaliteit van het
+# resultaat); de btw- en KVK-regels horen sinds dezelfde ronde bij gezichtspunt 9.
+KENMERKEN_WERKTABEL = {
     "zzp_kenmerken": [
         "Bepaalt zelf hoe het werk wordt uitgevoerd",
         "Draagt commercieel risico: aansprakelijk bij schade aan derden, geen doorbetaling bij ziekte of ongeval",

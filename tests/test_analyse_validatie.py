@@ -10,7 +10,7 @@ import unittest
 
 from analyse_validatie import OngeldigeAnalyse, lees_analyse, valideer_analyse
 from app import kennisbasis_verlopen
-from knowledge_base import ACTUELE_FEITEN, BRONNEN, NEGEN_GEZICHTSPUNTEN, SZW_TABEL
+from knowledge_base import ACTUELE_FEITEN, BRONNEN, NEGEN_GEZICHTSPUNTEN, KENMERKEN_WERKTABEL
 from prompts import SYSTEM_PROMPT
 
 
@@ -307,8 +307,8 @@ class GezichtspuntenVolgenHetArrestTest(unittest.TestCase):
         self.assertIn("commercieel risico", SYSTEM_PROMPT.lower())
 
     def test_szw_tabel_dekt_de_elementen_van_gezichtspunt_8(self):
-        zzp = " ".join(SZW_TABEL["zzp_kenmerken"]).lower()
-        loon = " ".join(SZW_TABEL["loondienst_kenmerken"]).lower()
+        zzp = " ".join(KENMERKEN_WERKTABEL["zzp_kenmerken"]).lower()
+        loon = " ".join(KENMERKEN_WERKTABEL["loondienst_kenmerken"]).lower()
         for element in ("commercieel risico", "schade aan derden", "ziekte",
                         "eigen tijd en voor eigen rekening"):
             with self.subTest(element=element):
@@ -317,8 +317,8 @@ class GezichtspuntenVolgenHetArrestTest(unittest.TestCase):
             with self.subTest(element=element, lijst="loondienst"):
                 self.assertIn(element, loon)
         # De lijsten zijn per index gepaard; ongelijke lengte zet de paren uit elkaar.
-        self.assertEqual(len(SZW_TABEL["zzp_kenmerken"]),
-                         len(SZW_TABEL["loondienst_kenmerken"]))
+        self.assertEqual(len(KENMERKEN_WERKTABEL["zzp_kenmerken"]),
+                         len(KENMERKEN_WERKTABEL["loondienst_kenmerken"]))
 
 
 class VragenlijstVolgtDeGezichtspuntenTest(unittest.TestCase):

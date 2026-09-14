@@ -2,7 +2,7 @@
 Systeemprompt en analyse-prompt voor de DBA Risicoscan.
 """
 
-from knowledge_base import NEGEN_GEZICHTSPUNTEN, SZW_TABEL, ACTUELE_FEITEN, BRONNEN
+from knowledge_base import NEGEN_GEZICHTSPUNTEN, KENMERKEN_WERKTABEL, ACTUELE_FEITEN, BRONNEN
 
 
 def _bouw_kennislaag() -> str:
@@ -11,8 +11,8 @@ def _bouw_kennislaag() -> str:
         for g in NEGEN_GEZICHTSPUNTEN
     )
 
-    zzp = "\n".join(f"- {k}" for k in SZW_TABEL["zzp_kenmerken"])
-    loon = "\n".join(f"- {k}" for k in SZW_TABEL["loondienst_kenmerken"])
+    zzp = "\n".join(f"- {k}" for k in KENMERKEN_WERKTABEL["zzp_kenmerken"])
+    loon = "\n".join(f"- {k}" for k in KENMERKEN_WERKTABEL["loondienst_kenmerken"])
 
     bronnen = "\n".join(
         f"- {b['naam']} ({b.get('datum', 'z.d.')}): {b['inhoud']}"
@@ -27,7 +27,11 @@ Tussen deze gezichtspunten geldt GEEN rangorde; zij moeten in onderlinge samenha
 
 {gezichtspunten_tekst}
 
-## SZW-TABEL: KENMERKEN ZZP VERSUS LOONDIENST
+## HULPLIJST KENMERKEN ZZP VERSUS LOONDIENST (geen bron, alleen een hulpmiddel)
+
+Dit is een eigen werktabel en geen citaat uit een officiële bron. Gebruik haar als
+hulpmiddel bij het duiden van de negen gezichtspunten hierboven, niet als zelfstandig
+toetsingskader en niet als gezaghebbende bron.
 
 Wijst op ZZP-schap:
 {zzp}
