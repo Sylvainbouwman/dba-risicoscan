@@ -11,8 +11,14 @@ def _bouw_kennislaag() -> str:
         for g in NEGEN_GEZICHTSPUNTEN
     )
 
-    zzp = "\n".join(f"- {k}" for k in KENMERKEN_WERKTABEL["zzp_kenmerken"])
-    loon = "\n".join(f"- {k}" for k in KENMERKEN_WERKTABEL["loondienst_kenmerken"])
+    zzp = "\n".join(
+        f"- {r['tekst']} (gezichtspunt {r['gezichtspunt']})"
+        for r in KENMERKEN_WERKTABEL if r["wijst_op"] == "zzp"
+    )
+    loon = "\n".join(
+        f"- {r['tekst']} (gezichtspunt {r['gezichtspunt']})"
+        for r in KENMERKEN_WERKTABEL if r["wijst_op"] == "loondienst"
+    )
 
     bronnen = "\n".join(
         f"- {b['naam']} ({b.get('datum', 'z.d.')}): {b['inhoud']}"
@@ -29,9 +35,11 @@ Tussen deze gezichtspunten geldt GEEN rangorde; zij moeten in onderlinge samenha
 
 ## HULPLIJST KENMERKEN ZZP VERSUS LOONDIENST (geen bron, alleen een hulpmiddel)
 
-Dit is een eigen werktabel en geen citaat uit een officiële bron. Gebruik haar als
-hulpmiddel bij het duiden van de negen gezichtspunten hierboven, niet als zelfstandig
-toetsingskader en niet als gezaghebbende bron.
+Dit is een eigen werktabel en geen citaat uit een officiële bron. Elke regel is herleid
+tot een van de negen gezichtspunten hierboven, met dat nummer erachter; de toelichting bij
+een deel van die gezichtspunten noemt daarbij ook een eigen vindplaats (arrest of kader).
+Gebruik deze lijst als hulpmiddel bij het duiden van de gezichtspunten hierboven, niet als
+zelfstandig toetsingskader en niet als gezaghebbende bron op zichzelf.
 
 Wijst op ZZP-schap:
 {zzp}

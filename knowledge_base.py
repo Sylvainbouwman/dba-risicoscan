@@ -148,9 +148,10 @@ NEGEN_GEZICHTSPUNTEN = [
         "nummer": 6,
         "naam": "Wijze waarop de beloning wordt bepaald en uitbetaald",
         "toelichting": (
-            "Betaling via factuur met BTW op basis van resultaat of vaste prijs wijst op ZZP-schap. "
-            "Betaling per uur zonder BTW, of met loonelementen zoals vakantiegeld, pensioenopbouw "
-            "of doorbetaling bij ziekte wijst sterk op loondienst."
+            "Betaling via factuur op basis van resultaat of vaste prijs wijst op ZZP-schap. "
+            "Betaling per uur zonder factuur, of met loonelementen zoals vakantiegeld, pensioenopbouw "
+            "of doorbetaling bij ziekte wijst sterk op loondienst. De btw-behandeling zelf hoort niet "
+            "bij dit gezichtspunt maar bij het negende (fiscale behandeling, r.o. 3.2.5)."
         ),
     },
     {
@@ -210,45 +211,68 @@ NEGEN_GEZICHTSPUNTEN = [
     },
 ]
 
-# Eigen hulplijst, geen citaat uit een bron. Per index gepaard: regel n van de ene lijst
-# is de tegenhanger van regel n van de andere. Nagemeten op 11-09-2026: deze indeling komt
-# niet voor in het beslis- en afwegingskader van de Belastingdienst (april 2026) en niet in
-# het toetsingskader van SZW (juli 2026, beide PDF zelf uitgelezen). De vorige naam
-# SZW_TABEL suggereerde een officiele herkomst die er niet is; op besluit van Sylvain
-# (15-09-2026) hernoemd naar deze neutrale vorm, met dezelfde vermelding in de systeemprompt
-# zelf (zie prompts.py). Regel voor regel herleiden tot een gezichtspunt met vindplaats
-# blijft de vervolgstap, zie OPENSTAANDE-VRAGEN.md. Inhoudelijk ongewijzigd: het financieel
-# risico is op 11-09-2026 al gelijkgetrokken met de elementen van gezichtspunt 8 (schade aan
-# derden, ziekte, ongeval, investeringen, verantwoordelijkheid voor de kwaliteit van het
-# resultaat); de btw- en KVK-regels horen sinds dezelfde ronde bij gezichtspunt 9.
-KENMERKEN_WERKTABEL = {
-    "zzp_kenmerken": [
-        "Bepaalt zelf hoe het werk wordt uitgevoerd",
-        "Draagt commercieel risico: aansprakelijk bij schade aan derden, geen doorbetaling bij ziekte of ongeval",
-        "Herstelt een ondermaats resultaat in eigen tijd en voor eigen rekening (no cure no pay)",
-        "Investeert in eigen bedrijfsmiddelen of gereedschap",
-        "Heeft meerdere opdrachtgevers (actief)",
-        "Kan zich vrij laten vervangen door iemand naar eigen keuze",
-        "Bepaalt eigen werktijden en werkplek",
-        "Brengt BTW in rekening en doet btw-aangifte",
-        "Staat actief ingeschreven bij KVK, heeft eigen branding",
-        "Presenteert zich actief als ondernemer (website, acquisitie)",
-        "Uurtarief duidelijk hoger dan vergelijkbaar cao-loon incl. werkgeverslasten",
-    ],
-    "loondienst_kenmerken": [
-        "Ontvangt instructies over hoe, wanneer en waar te werken",
-        "Opdrachtgever draagt het risico bij schade aan derden, ziekte en ongeval",
-        "Een ondermaats resultaat wordt in de tijd en voor rekening van de opdrachtgever hersteld",
-        "Werkt met materialen, systemen of gereedschap van de opdrachtgever",
-        "Werkt exclusief of vrijwel exclusief voor één opdrachtgever",
-        "Moet persoonlijk werken; vervanging niet of nauwelijks toegestaan",
-        "Werktijden en locatie worden bepaald door opdrachtgever",
-        "Geen BTW op factuur, of betaling zonder factuur",
-        "Geen of slapende KVK-inschrijving; geen eigen acquisitie",
-        "Geïntegreerd in het team; zelfde werk als vaste medewerkers",
-        "Tarief vergelijkbaar met of lager dan cao-loon",
-    ],
-}
+# Eigen hulplijst, geen citaat uit een bron. Herleiding 27-09-2026: elke regel is nu
+# herleid tot een van de negen gezichtspunten, met dat gezichtspuntnummer als vindplaats.
+# Alle tweeëntwintig oorspronkelijke regels bleken herleidbaar; er is dus niets geschrapt.
+# Eén regel stond tot deze datum ten onrechte gekoppeld aan de tegenhanger van een ander
+# gezichtspunt: de loondienstregel "Geïntegreerd in het team; zelfde werk als vaste
+# medewerkers" stond op dezelfde positie als de zzp-regel over ondernemersgedrag
+# (gezichtspunt 9), terwijl zij inhoudelijk overeenkomt met de toelichting bij gezichtspunt 3
+# hierboven ("functioneert als onderdeel van het vaste team ... vergelijkbaar werk doet als
+# vaste medewerkers"). De regels zijn daarom niet langer per index gepaard maar staan los,
+# elk met haar eigen gezichtspunt.
+#
+# Onafhankelijke toets door de agent bron-controleur (27-09-2026), r.o. 3.2.5 van het
+# Deliveroo-arrest zelf nagelezen via data.rechtspraak.nl: twee regels bestreken elk twee
+# gezichtspunten tegelijk en zijn daarom gesplitst. "Werkt met materialen, systemen of
+# gereedschap van de opdrachtgever" noemde naast materialen en gereedschap (gezichtspunt 8,
+# spiegelbeeld van "investeert in eigen bedrijfsmiddelen") ook "systemen van de
+# opdrachtgever", wat woordelijk in de toelichting bij gezichtspunt 3 staat
+# ("gebruik maakt van ... systemen van de opdrachtgever"). En "Geen BTW op factuur, of
+# betaling zonder factuur" noemde naast de btw (gezichtspunt 9, fiscale behandeling volgens
+# r.o. 3.2.5) ook de betaalwijze zelf, die bij gezichtspunt 6 hoort ("wijze waarop de
+# beloning wordt ... uitbetaald"); de toelichting bij gezichtspunt 6 noemde daarnaast zelf
+# ten onrechte de btw en is in dezelfde ronde daarvan ontdaan. Op gezichtspunt 1 en 5 staat
+# bewust geen regel: geen van de tweeëntwintig oorspronkelijke regels hoorde daar
+# inhoudelijk bij, en een regel erbij verzinnen zou zelf weer een vuistregel zonder
+# vindplaats toevoegen.
+#
+# Nagemeten op 11-09-2026: deze indeling zelf komt niet voor in het beslis- en
+# afwegingskader van de Belastingdienst (april 2026) en niet in het toetsingskader van SZW
+# (juli 2026, beide PDF zelf uitgelezen); zij blijft daarom een eigen hulplijst en geen
+# citaat, met de vindplaats nu per regel bij het gezichtspunt waar zij inhoudelijk bij hoort.
+KENMERKEN_WERKTABEL = [
+    {"tekst": "Bepaalt zelf hoe het werk wordt uitgevoerd", "wijst_op": "zzp", "gezichtspunt": 2},
+    {"tekst": "Ontvangt instructies over hoe, wanneer en waar te werken", "wijst_op": "loondienst", "gezichtspunt": 2},
+    {"tekst": "Bepaalt eigen werktijden en werkplek", "wijst_op": "zzp", "gezichtspunt": 2},
+    {"tekst": "Werktijden en locatie worden bepaald door opdrachtgever", "wijst_op": "loondienst", "gezichtspunt": 2},
+
+    {"tekst": "Geïntegreerd in het team; zelfde werk als vaste medewerkers", "wijst_op": "loondienst", "gezichtspunt": 3},
+    {"tekst": "Werkt met systemen van de opdrachtgever", "wijst_op": "loondienst", "gezichtspunt": 3},
+
+    {"tekst": "Kan zich vrij laten vervangen door iemand naar eigen keuze", "wijst_op": "zzp", "gezichtspunt": 4},
+    {"tekst": "Moet persoonlijk werken; vervanging niet of nauwelijks toegestaan", "wijst_op": "loondienst", "gezichtspunt": 4},
+
+    {"tekst": "Uurtarief duidelijk hoger dan vergelijkbaar cao-loon incl. werkgeverslasten", "wijst_op": "zzp", "gezichtspunt": 7},
+    {"tekst": "Tarief vergelijkbaar met of lager dan cao-loon", "wijst_op": "loondienst", "gezichtspunt": 7},
+
+    {"tekst": "Draagt commercieel risico: aansprakelijk bij schade aan derden, geen doorbetaling bij ziekte of ongeval", "wijst_op": "zzp", "gezichtspunt": 8},
+    {"tekst": "Opdrachtgever draagt het risico bij schade aan derden, ziekte en ongeval", "wijst_op": "loondienst", "gezichtspunt": 8},
+    {"tekst": "Herstelt een ondermaats resultaat in eigen tijd en voor eigen rekening (no cure no pay)", "wijst_op": "zzp", "gezichtspunt": 8},
+    {"tekst": "Een ondermaats resultaat wordt in de tijd en voor rekening van de opdrachtgever hersteld", "wijst_op": "loondienst", "gezichtspunt": 8},
+    {"tekst": "Investeert in eigen bedrijfsmiddelen of gereedschap", "wijst_op": "zzp", "gezichtspunt": 8},
+    {"tekst": "Werkt met materialen of gereedschap van de opdrachtgever", "wijst_op": "loondienst", "gezichtspunt": 8},
+
+    {"tekst": "Heeft meerdere opdrachtgevers (actief)", "wijst_op": "zzp", "gezichtspunt": 9},
+    {"tekst": "Werkt exclusief of vrijwel exclusief voor één opdrachtgever", "wijst_op": "loondienst", "gezichtspunt": 9},
+    {"tekst": "Brengt BTW in rekening en doet btw-aangifte", "wijst_op": "zzp", "gezichtspunt": 9},
+    {"tekst": "Geen BTW op factuur", "wijst_op": "loondienst", "gezichtspunt": 9},
+    {"tekst": "Staat actief ingeschreven bij KVK, heeft eigen branding", "wijst_op": "zzp", "gezichtspunt": 9},
+    {"tekst": "Geen of slapende KVK-inschrijving; geen eigen acquisitie", "wijst_op": "loondienst", "gezichtspunt": 9},
+    {"tekst": "Presenteert zich actief als ondernemer (website, acquisitie)", "wijst_op": "zzp", "gezichtspunt": 9},
+
+    {"tekst": "Betaling zonder factuur", "wijst_op": "loondienst", "gezichtspunt": 6},
+]
 
 BRONNEN = {
     "deliveroo": {
