@@ -307,8 +307,9 @@ class GezichtspuntenVolgenHetArrestTest(unittest.TestCase):
         self.assertIn("commercieel risico", SYSTEM_PROMPT.lower())
 
     def test_szw_tabel_dekt_de_elementen_van_gezichtspunt_8(self):
-        zzp = " ".join(KENMERKEN_WERKTABEL["zzp_kenmerken"]).lower()
-        loon = " ".join(KENMERKEN_WERKTABEL["loondienst_kenmerken"]).lower()
+        gezichtspunt_8 = [r for r in KENMERKEN_WERKTABEL if r["gezichtspunt"] == 8]
+        zzp = " ".join(r["tekst"] for r in gezichtspunt_8 if r["wijst_op"] == "zzp").lower()
+        loon = " ".join(r["tekst"] for r in gezichtspunt_8 if r["wijst_op"] == "loondienst").lower()
         for element in ("commercieel risico", "schade aan derden", "ziekte",
                         "eigen tijd en voor eigen rekening"):
             with self.subTest(element=element):
@@ -316,9 +317,13 @@ class GezichtspuntenVolgenHetArrestTest(unittest.TestCase):
         for element in ("schade aan derden", "ziekte", "ongeval"):
             with self.subTest(element=element, lijst="loondienst"):
                 self.assertIn(element, loon)
-        # De lijsten zijn per index gepaard; ongelijke lengte zet de paren uit elkaar.
-        self.assertEqual(len(KENMERKEN_WERKTABEL["zzp_kenmerken"]),
-                         len(KENMERKEN_WERKTABEL["loondienst_kenmerken"]))
+
+    def test_elke_regel_heeft_een_bestaand_gezichtspunt_als_vindplaats(self):
+        geldige_nummers = {g["nummer"] for g in NEGEN_GEZICHTSPUNTEN}
+        for regel in KENMERKEN_WERKTABEL:
+            with self.subTest(regel=regel["tekst"]):
+                self.assertIn(regel["gezichtspunt"], geldige_nummers)
+                self.assertIn(regel["wijst_op"], ("zzp", "loondienst"))
 
 
 class VragenlijstVolgtDeGezichtspuntenTest(unittest.TestCase):
