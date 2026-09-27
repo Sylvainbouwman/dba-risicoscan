@@ -132,7 +132,9 @@ NEGEN_GEZICHTSPUNTEN = [
         "toelichting": (
             "Als vervanging praktisch onmogelijk is of alleen met toestemming van de opdrachtgever, "
             "wijst dit op loondienst. Een echte ZZP'er kan zich vrij laten vervangen door iemand naar eigen keuze, "
-            "en dit moet ook daadwerkelijk zijn voorgekomen of praktisch mogelijk zijn."
+            "en dit moet ook daadwerkelijk zijn voorgekomen of praktisch mogelijk zijn. De verplichting het werk "
+            "persoonlijk uit te voeren is het vierde gezichtspunt uit het Deliveroo-arrest "
+            "(HR 24 maart 2023, ECLI:NL:HR:2023:443, r.o. 3.2.5)."
         ),
     },
     {
@@ -141,7 +143,9 @@ NEGEN_GEZICHTSPUNTEN = [
         "toelichting": (
             "Als de opdrachtnemer de voorwaarden vrijelijk kon onderhandelen wijst dit op ZZP-schap. "
             "Als de opdrachtgever een standaardcontract oplegde zonder onderhandelingsruimte, wijst dit meer op "
-            "een gezagsverhouding. Let op: een modelovereenkomst biedt geen zekerheid als de feitelijke uitvoering afwijkt."
+            "een gezagsverhouding. Let op: een modelovereenkomst biedt geen zekerheid als de feitelijke uitvoering afwijkt. "
+            "De wijze waarop de contractuele regeling tot stand is gekomen is het vijfde gezichtspunt uit het "
+            "Deliveroo-arrest (HR 24 maart 2023, ECLI:NL:HR:2023:443, r.o. 3.2.5)."
         ),
     },
     {
@@ -150,8 +154,10 @@ NEGEN_GEZICHTSPUNTEN = [
         "toelichting": (
             "Betaling via factuur op basis van resultaat of vaste prijs wijst op ZZP-schap. "
             "Betaling per uur zonder factuur, of met loonelementen zoals vakantiegeld, pensioenopbouw "
-            "of doorbetaling bij ziekte wijst sterk op loondienst. De btw-behandeling zelf hoort niet "
-            "bij dit gezichtspunt maar bij het negende (fiscale behandeling, r.o. 3.2.5)."
+            "of doorbetaling bij ziekte wijst sterk op loondienst. De wijze waarop de beloning wordt "
+            "bepaald en uitbetaald is het zesde gezichtspunt uit het Deliveroo-arrest (HR 24 maart 2023, "
+            "ECLI:NL:HR:2023:443, r.o. 3.2.5). De btw-behandeling zelf hoort niet bij dit gezichtspunt "
+            "maar bij het negende (fiscale behandeling, r.o. 3.2.5)."
         ),
     },
     {
