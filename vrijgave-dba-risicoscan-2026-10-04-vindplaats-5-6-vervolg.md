@@ -24,4 +24,14 @@ met één kanttekening bij de btw-formulering in gezichtspunt 6. Die is in dezel
 
 ## Testset
 
-39 van 39 tests groen (`python -m unittest discover -s tests`), waarvan twee nieuw voor deze zinnen.
+40 van 40 tests groen (`python -m unittest discover -s tests`), waarvan drie nieuw (twee voor de zinnen hierboven, één voor de modelmelding).
+
+## Onderhoud in dezelfde branch (open punten 8, 9 en 10)
+
+- `.github/workflows/tests.yml`: draait de testset op elke push en pull request. Publiceert niets,
+  gebruikt geen secrets.
+- `requirements.txt`: exact vastgepind op de versies waarmee de tests en de app zijn gedraaid
+  (streamlit 1.57.0, anthropic 0.104.1, python-docx 1.2.0).
+- `app.py`: bij een ingetrokken model-ID (404 van de API) toont de app een eigen melding aan de
+  beheerder in plaats van de algemene foutmelding. Geen automatische terugval op een ander model.
+- Testset nu 40 van 40 groen, waarvan één nieuwe test voor die melding.

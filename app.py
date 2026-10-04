@@ -387,6 +387,9 @@ def voer_analyse_uit(intake: dict, antwoorden: dict) -> dict | None:
         except anthropic.AuthenticationError:
             st.error("De API accepteert de ingestelde sleutel niet. Laat de beheerder de configuratie controleren.")
             return None
+        except anthropic.NotFoundError:
+            st.error("Het ingestelde analysemodel is niet meer beschikbaar. Laat de beheerder het model-ID in de configuratie aanpassen.")
+            return None
         except Exception:
             st.error("De analyse kon niet worden uitgevoerd. Probeer het later opnieuw.")
             return None

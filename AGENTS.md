@@ -4,7 +4,7 @@ Streamlit-tool die een arbeidsrelatie langs de negen gezichtspunten van het Deli
 
 ## Publicatie
 
-Er is geen workflow in deze repository (gemeten op origin/main): niets wordt naar `bouwman-tools` gekopieerd. De live tool staat op dba-risicoscan.streamlit.app. Of een push naar `main` die app direct bijwerkt hangt af van de Streamlit-koppeling, die niet in de repository staat en niet is gemeten. Behandel een push naar `main` daarom als mogelijke publicatie en werk op een eigen branch.
+Er is één workflow, `.github/workflows/tests.yml`, die alleen de tests draait (geen publicatie, geen secrets). Niets wordt naar `bouwman-tools` gekopieerd. De live tool staat op dba-risicoscan.streamlit.app. Of een push naar `main` die app direct bijwerkt hangt af van de Streamlit-koppeling, die niet in de repository staat en niet is gemeten. Behandel een push naar `main` daarom als mogelijke publicatie en werk op een eigen branch.
 
 ## Testen
 
@@ -12,7 +12,7 @@ Er is geen workflow in deze repository (gemeten op origin/main): niets wordt naa
 & "C:\Python314\python.exe" -m unittest discover -s tests -v
 ```
 
-Synthetisch, zonder API-aanroepen of sleutels (37 tests geslaagd op 02-10-2026). Er is geen pytest-configuratie. `streamlit` draai je via `python -m streamlit run app.py`. De sleutel `ANTHROPIC_API_KEY` staat in `.streamlit/secrets.toml`, dat je niet opent.
+Synthetisch, zonder API-aanroepen of sleutels (40 tests geslaagd op 04-10-2026; dezelfde opdracht draait in de CI). Er is geen pytest-configuratie. `streamlit` draai je via `python -m streamlit run app.py`. De sleutel `ANTHROPIC_API_KEY` staat in `.streamlit/secrets.toml`, dat je niet opent. `requirements.txt` staat exact vastgepind; verhoog een versie bewust en draai daarna de tests en de app.
 
 ## Waar de inhoud staat
 
