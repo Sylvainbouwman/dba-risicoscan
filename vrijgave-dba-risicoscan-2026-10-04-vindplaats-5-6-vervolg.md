@@ -3,7 +3,7 @@
 **Tool:** DBA Risicoscan, https://dba-risicoscan.streamlit.app/
 **Repository:** Sylvainbouwman/dba-risicoscan (publiek)
 **Eigenaar:** Sylvain Bouwman
-**Datum:** 04-10-2026 (branch, nog niet gemerged)
+**Datum:** 04-10-2026 (PR #8, gemerged op 04-10-2026)
 
 ## Wat is er gewijzigd
 
@@ -35,3 +35,18 @@ met één kanttekening bij de btw-formulering in gezichtspunt 6. Die is in dezel
 - `app.py`: bij een ingetrokken model-ID (404 van de API) toont de app een eigen melding aan de
   beheerder in plaats van de algemene foutmelding. Geen automatische terugval op een ander model.
 - Testset nu 40 van 40 groen, waarvan één nieuwe test voor die melding.
+
+## Wat de eigenaar moet beoordelen
+
+- Gezichtspunt 6 zegt nu dat het arrest alleen "fiscale behandeling" noemt en dat de btw daaronder
+  valt volgens de indeling van de tool. Is die indeling zo gewenst, of moet de btw-vraag elders
+  hangen? Zonder reactie blijft de huidige indeling staan.
+- De exacte versies in `requirements.txt` zijn gemeten op Python 3.14 lokaal en 3.13 in de CI. Na de
+  merge herbouwt Streamlit de live app; die herbouw is niet waargenomen.
+
+## Openstaande punten
+
+- De beschrijvende tekst bij gezichtspunt 4, 5 en 6 heeft buiten r.o. 3.2.5 zelf geen eigen
+  vindplaats. Dit is eigen uitwerking, net als bij de meeste andere gezichtspunten.
+- Geen inhoudelijke regressieset voor het signaal per gezichtspunt (eigen sessie later).
+- Het SZW-toetsingskader van juli 2026 wordt volgens de vakpers aangepast; nog geen nieuwe versie.
