@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from types import SimpleNamespace
 import unittest
+import unittest.mock
 
 from analyse_validatie import OngeldigeAnalyse, lees_analyse, valideer_analyse
 from app import kennisbasis_verlopen
@@ -257,6 +258,18 @@ class GezichtspuntenVolgenHetArrestTest(unittest.TestCase):
         # (april 2026), waarvan het SZW-toetsingskader een verkorte afgeleide is.
         self.assertIn("afwegingskader", toelichting.lower())
 
+    def test_vijfde_gezichtspunt_noemt_de_slotzin_van_het_arrest(self):
+        # Vindplaats van de modelovereenkomst-opmerking: de slotzin van r.o. 3.2.5 (gewicht
+        # van een contractueel beding hangt mede af van zijn werkelijke betekenis).
+        toelichting = NEGEN_GEZICHTSPUNTEN[4]["toelichting"]
+        self.assertIn("slotzin van r.o. 3.2.5", toelichting)
+        self.assertIn("daadwerkelijk betekenis", toelichting)
+
+    def test_zesde_gezichtspunt_verwijst_voor_de_fiscale_behandeling_naar_het_negende(self):
+        toelichting = NEGEN_GEZICHTSPUNTEN[5]["toelichting"]
+        self.assertIn("het negende", toelichting)
+        self.assertIn("voorbeeld van ondernemersgedrag", toelichting)
+
     def test_afwegingskader_belastingdienst_staat_in_de_bronnen(self):
         # Primaire uitvoeringsbron, PDF zelf gelezen 11-09-2026 met pypdf. Eerdere
         # sessies kregen deze PDF niet uitgelezen; de bron stond daarom nog niet in
@@ -388,6 +401,35 @@ class VragenlijstVolgtDeGezichtspuntenTest(unittest.TestCase):
         self.assertNotIn("omzetbelasting", achtste.lower())
         self.assertIn("economisch verkeer", negende.lower())
         self.assertIn("r.o. 3.2.5", readme)
+
+
+class ModelNietBeschikbaarTest(unittest.TestCase):
+    """Een ingetrokken model-ID geeft een eigen melding, geen algemene foutmelding."""
+
+    def test_onbekend_model_geeft_een_melding_over_het_model(self):
+        import anthropic
+        import httpx
+        import app
+
+        verzoek = httpx.Request("POST", "https://api.anthropic.com/v1/messages")
+        fout = anthropic.NotFoundError(
+            "model not found", response=httpx.Response(404, request=verzoek), body=None)
+
+        class NepClient:
+            class messages:
+                @staticmethod
+                def create(**_):
+                    raise fout
+
+        meldingen = []
+        with unittest.mock.patch.object(app, "get_client", return_value=NepClient()), \
+                unittest.mock.patch.object(app.st, "error", side_effect=meldingen.append), \
+                unittest.mock.patch.object(app.st, "spinner", return_value=nullcontext()), \
+                unittest.mock.patch.object(app, "bouw_analyse_prompt", return_value="x"):
+            self.assertIsNone(app.voer_analyse_uit({}, {}))
+        self.assertEqual(len(meldingen), 1)
+        self.assertIn("model", meldingen[0].lower())
+        self.assertIn("beheerder", meldingen[0].lower())
 
 
 if __name__ == '__main__':

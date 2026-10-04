@@ -144,6 +144,8 @@ NEGEN_GEZICHTSPUNTEN = [
             "Als de opdrachtnemer de voorwaarden vrijelijk kon onderhandelen wijst dit op ZZP-schap. "
             "Als de opdrachtgever een standaardcontract oplegde zonder onderhandelingsruimte, wijst dit meer op "
             "een gezagsverhouding. Let op: een modelovereenkomst biedt geen zekerheid als de feitelijke uitvoering afwijkt. "
+            "Volgens de slotzin van r.o. 3.2.5 hangt het gewicht van een contractueel beding mede af van de "
+            "mate waarin dat beding daadwerkelijk betekenis heeft voor degene die de werkzaamheden verricht. "
             "De wijze waarop de contractuele regeling tot stand is gekomen is het vijfde gezichtspunt uit het "
             "Deliveroo-arrest (HR 24 maart 2023, ECLI:NL:HR:2023:443, r.o. 3.2.5)."
         ),
@@ -157,7 +159,8 @@ NEGEN_GEZICHTSPUNTEN = [
             "of doorbetaling bij ziekte wijst sterk op loondienst. De wijze waarop de beloning wordt "
             "bepaald en uitbetaald is het zesde gezichtspunt uit het Deliveroo-arrest (HR 24 maart 2023, "
             "ECLI:NL:HR:2023:443, r.o. 3.2.5). De btw-behandeling zelf hoort niet bij dit gezichtspunt "
-            "maar bij het negende (fiscale behandeling, r.o. 3.2.5)."
+            "maar bij het negende: r.o. 3.2.5 noemt daar de fiscale behandeling als voorbeeld van ondernemersgedrag. "
+            "Het arrest zegt alleen 'fiscale behandeling'; dat de btw daaronder valt is de indeling van deze tool."
         ),
     },
     {
