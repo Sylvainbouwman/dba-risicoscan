@@ -257,6 +257,18 @@ class GezichtspuntenVolgenHetArrestTest(unittest.TestCase):
         # (april 2026), waarvan het SZW-toetsingskader een verkorte afgeleide is.
         self.assertIn("afwegingskader", toelichting.lower())
 
+    def test_vijfde_gezichtspunt_noemt_de_slotzin_van_het_arrest(self):
+        # Vindplaats van de modelovereenkomst-opmerking: de slotzin van r.o. 3.2.5 (gewicht
+        # van een contractueel beding hangt mede af van zijn werkelijke betekenis).
+        toelichting = NEGEN_GEZICHTSPUNTEN[4]["toelichting"]
+        self.assertIn("slotzin van r.o. 3.2.5", toelichting)
+        self.assertIn("daadwerkelijk betekenis", toelichting)
+
+    def test_zesde_gezichtspunt_verwijst_voor_de_fiscale_behandeling_naar_het_negende(self):
+        toelichting = NEGEN_GEZICHTSPUNTEN[5]["toelichting"]
+        self.assertIn("het negende", toelichting)
+        self.assertIn("voorbeeld van ondernemersgedrag", toelichting)
+
     def test_afwegingskader_belastingdienst_staat_in_de_bronnen(self):
         # Primaire uitvoeringsbron, PDF zelf gelezen 11-09-2026 met pypdf. Eerdere
         # sessies kregen deze PDF niet uitgelezen; de bron stond daarom nog niet in
